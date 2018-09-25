@@ -9,6 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj" />
-    <Content Include="Module.cs" />
+    <Content Include="ModuleBootstraper.cs" />
   </ItemGroup>
 </Project>
