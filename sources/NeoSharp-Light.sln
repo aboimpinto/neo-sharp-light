@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Communications", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.DbAccess", "NeoSharp.DbAccess\NeoSharp.DbAccess.csproj", "{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Rpc", "NeoSharp.Rpc\NeoSharp.Rpc.csproj", "{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,5 +102,17 @@ Global
 		{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC}.Release|x64.Build.0 = Release|Any CPU
 		{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC}.Release|x86.ActiveCfg = Release|Any CPU
 		{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC}.Release|x86.Build.0 = Release|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Debug|x64.Build.0 = Debug|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Debug|x86.Build.0 = Debug|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Release|x64.ActiveCfg = Release|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Release|x64.Build.0 = Release|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Release|x86.ActiveCfg = Release|Any CPU
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
