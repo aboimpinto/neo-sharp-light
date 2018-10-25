@@ -20,7 +20,6 @@ namespace NeoSharp.Application
 
         public void LoadModules()
         {
-            
         }
     }
 }

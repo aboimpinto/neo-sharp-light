@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 
 namespace NeoSharp.Application
 {
     public class ModuleConfiguration
     {
-        public string[] Modules { get; set; }
+        public IEnumerable<string> Modules { get; set; }
 
         public ModuleConfiguration(IConfiguration configuration)
         {
@@ -13,6 +14,5 @@ namespace NeoSharp.Application
 
             section.Bind(this);
         }
-
     }
 }
