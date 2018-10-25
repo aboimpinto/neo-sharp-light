@@ -4,7 +4,7 @@ namespace NeoSharp.Logging
 {
     public class ModuleBootstraper : IModule
     {
-        public void Register(IContainerModule containerModule)
+        public void Register(IContainerBuilder containerBuilder)
         {
             
         }

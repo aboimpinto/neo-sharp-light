@@ -4,9 +4,9 @@ namespace NeoSharp.Logging.NLog
 {
     public class ModuleBootstraper : IModule
     {
-        public void Register(IContainerModule containerModule)
+        public void Register(IContainerBuilder containerBuilder)
         {
-            containerModule.Register<ILogProvider, NLogProvider>();
+            containerBuilder.Register<ILogProvider, NLogProvider>();
         }
     }
 }

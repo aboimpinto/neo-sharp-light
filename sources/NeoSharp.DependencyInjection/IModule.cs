@@ -4,6 +4,6 @@ namespace NeoSharp.DependencyInjection
 {
     public interface IModule
     {
-        void Register(IContainerModule containerModule);        
+        void Register(IContainerBuilder containerBuilder);        
     }
 }

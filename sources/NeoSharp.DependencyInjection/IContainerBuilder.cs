@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace NeoSharp.DependencyInjection
 {
-    public interface IContainerModule
+    public interface IContainerBuilder
     {
         event Action<IContainer> OnBuild;
         

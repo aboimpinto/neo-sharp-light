@@ -13,4 +13,7 @@
     <ProjectReference Include="..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+		<CodeAnalysisRuleSet>$(SolutionDir)ca.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
 </Project>
