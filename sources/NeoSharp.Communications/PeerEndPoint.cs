@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -45,7 +46,7 @@ namespace NeoSharp.Communications
                 address[portIndex - 1] != ':')
             {
                 host = address.Substring(0, portIndex);
-                port = int.Parse(address.Substring(portIndex + 1));
+                port = int.Parse(address.Substring(portIndex + 1), CultureInfo.InvariantCulture);
             }
 
             this.Host = host;

@@ -24,7 +24,7 @@ namespace NeoSharp.Application
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
                 .Build();
-            
+
             this.moduleConfiguration = this.neoSharpConfiguration.LoadConfiguration<ModuleConfiguration>();
 
             this.dependencyInjectionContainer = new Container();
@@ -33,8 +33,6 @@ namespace NeoSharp.Application
         public void Start()
         {
             this.LoadModules();
-
-            // var container = this.simpleInjectorContainerBuilder.Build();
 
             var nepSharpContext = this.dependencyInjectionContainer.Resolve<INeoSharpContext>();
             nepSharpContext.ApplicationConfiguration = this.neoSharpConfiguration;
@@ -46,7 +44,21 @@ namespace NeoSharp.Application
         public void Dispose()
         {
             this.Dispose(true);
-            GC.SuppressFinalize(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+            }
+
+            this.disposed = true;
         }
 
         private void LoadModules()
@@ -80,20 +92,6 @@ namespace NeoSharp.Application
                     moduleBootstrapInstance.Start(this.dependencyInjectionContainer);
                 }
             }
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            if (this.disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-            }
-
-            this.disposed = true;
         }
     }
 }
