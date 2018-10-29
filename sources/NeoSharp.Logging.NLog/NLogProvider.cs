@@ -6,15 +6,12 @@ namespace NeoSharp.Logging.NLog
 {
     public class NLogProvider : ILogProvider
     {
-        #region Private Fields 
-        private readonly LoggerFactory _loggerFactory;
-        #endregion
+        private readonly LoggerFactory loggerFactory;
 
-        #region Constructor 
         public NLogProvider()
         {
-            this._loggerFactory = new LoggerFactory();
-            this._loggerFactory.AddNLog(new NLogProviderOptions
+            this.loggerFactory = new LoggerFactory();
+            this.loggerFactory.AddNLog(new NLogProviderOptions
             {
                 CaptureMessageTemplates = true,
                 CaptureMessageProperties = true
@@ -22,12 +19,10 @@ namespace NeoSharp.Logging.NLog
 
             LogManager.LoadConfiguration("nlog.config");
         }
-        #endregion
 
-        #region ILogProvider implementation 
         public Microsoft.Extensions.Logging.ILogger CreateLogger(string category)
         {
-            return this._loggerFactory.CreateLogger(category);
+            return this.loggerFactory.CreateLogger(category);
         }
 
         public void AddProvider(ILoggerProvider provider)
@@ -39,6 +34,5 @@ namespace NeoSharp.Logging.NLog
         {
             throw new System.NotImplementedException();
         }
-        #endregion
     }
 }

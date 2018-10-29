@@ -6,8 +6,15 @@ namespace NeoSharp.DependencyInjection
     {
         object Resolve(Type serviceType);
 
-        TEntity Resolve<TEntity>() where TEntity : class;
+        TEntity Resolve<TEntity>()
+            where TEntity : class;
 
-        bool TryResolve(Type parameterType, out object obj);
+        void Register<TService, TImplementation>()
+            where TService : class
+            where TImplementation : class, TService;
+
+        void RegisterSingleton<TService, TImplementation>()
+            where TService : class
+            where TImplementation : class, TService;
     }
 }

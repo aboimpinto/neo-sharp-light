@@ -7,7 +7,7 @@ namespace NeoSharp.Application
         public static void Main(string[] args)
         {
             var bootstraper = new Bootstrap();
-            bootstraper.LoadModules();
+            bootstraper.Start();
 
             Console.ReadLine();
         }

@@ -1,9 +1,9 @@
 using System;
 using Microsoft.Extensions.Configuration;
 
-namespace NeoSharp.Application
+namespace NeoSharp.Core.Extensions
 {
-    public static class IConfigurationExtensions
+    public static class ConfigurationExtensions
     {
         public static TConfiguration LoadConfiguration<TConfiguration>(this IConfiguration configuration)
         {

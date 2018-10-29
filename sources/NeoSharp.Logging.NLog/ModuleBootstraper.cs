@@ -1,12 +1,18 @@
-﻿using NeoSharp.DependencyInjection;
+using NeoSharp.Core;
+using NeoSharp.DependencyInjection;
 
 namespace NeoSharp.Logging.NLog
 {
-    public class ModuleBootstraper : IModule
+    public class ModuleBootstraper : IModuleBootstrapper
     {
-        public void Register(IContainerBuilder containerBuilder)
+        public void Start(IContainer container)
         {
-            containerBuilder.Register<ILogProvider, NLogProvider>();
+            container.Register<ILogProvider, NLogProvider>();
+        }
+
+        public void Stop()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

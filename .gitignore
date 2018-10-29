@@ -261,3 +261,5 @@ PublishProfiles
 src/NeoSharp.Application/Properties/launchSettings.json
 
 .vscode
+
+nlog-internal.log

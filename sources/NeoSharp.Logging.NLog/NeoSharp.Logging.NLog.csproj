@@ -11,6 +11,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
+    <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>

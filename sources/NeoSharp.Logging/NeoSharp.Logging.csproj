@@ -11,6 +11,9 @@
     <ProjectReference Include="..\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj" />
     <Content Include="ModuleBootstraper.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />
+  </ItemGroup>
 
   <PropertyGroup>
 		<CodeAnalysisRuleSet>$(SolutionDir)ca.ruleset</CodeAnalysisRuleSet>
