@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 
 namespace NeoSharp.Communications
@@ -17,14 +18,14 @@ namespace NeoSharp.Communications
 
         /// <summary>
         /// Force Ipv6
-        /// </summary>
+        /// </summary>}
         public bool ForceIPv6 { get; set; }
 
         /// <summary>
         /// Peers
         /// </summary>
-        public string[] Peers { get; set; }
-        // public EndPoint[] PeerEndPoints { get; internal set; }
+        // public string[] Peers { get; set; }
+        public IEnumerable<string> Peers { get; set; }
 
         /// <summary>
         /// Acl Config
@@ -34,7 +35,7 @@ namespace NeoSharp.Communications
         /// <summary>
         /// StandByValidator config
         /// </summary>
-        public string[] StandByValidator { get; internal set; }
+        public IEnumerable<string> StandByValidator { get; set; }
 
         public NetworkConfiguration(IConfiguration configuration)
         {
