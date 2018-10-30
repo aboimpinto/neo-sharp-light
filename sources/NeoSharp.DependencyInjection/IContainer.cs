@@ -12,6 +12,8 @@ namespace NeoSharp.DependencyInjection
         void Register<TService, TImplementation>()
             where TService : class
             where TImplementation : class, TService;
+        
+        void Register(Type service, Type implementation);
 
         void RegisterSingleton<TService, TImplementation>()
             where TService : class

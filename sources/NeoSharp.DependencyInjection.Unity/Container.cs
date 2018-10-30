@@ -30,6 +30,11 @@ namespace NeoSharp.DependencyInjection.Unity
             this.container.RegisterType<TService, TImplementation>();
         }
 
+        public void Register(Type service, Type implementation)
+        {
+            this.container.RegisterType(service, implementation);
+        }
+
         public void RegisterSingleton<TService, TImplementation>()
             where TService : class
             where TImplementation : class, TService

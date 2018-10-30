@@ -7,7 +7,7 @@ namespace NeoSharp.Logging
     {
         public void Start(IContainer container)
         {
-            
+             container.Register(typeof(ILogger<>), typeof(Logger<>));
         }
 
         public void Stop()

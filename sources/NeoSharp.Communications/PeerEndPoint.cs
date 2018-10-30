@@ -64,7 +64,6 @@ namespace NeoSharp.Communications
 
             try
             {
-                // var ipHostEntry = await Dns.GetHostEntryAsync(this.Host);
                 var getHostEntryAsyncTask = Dns.GetHostEntryAsync(this.Host);
                 getHostEntryAsyncTask.Wait();
 
