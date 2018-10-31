@@ -3,27 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Application", "NeoSharp.Application\NeoSharp.Application.csproj", "{C4822213-75ED-45DB-A63A-5ECA12578D31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Application", "sources\NeoSharp.Application\NeoSharp.Application.csproj", "{C4822213-75ED-45DB-A63A-5ECA12578D31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Types", "NeoSharp.Types\NeoSharp.Types.csproj", "{6803F037-FAF1-493B-92C7-232B3205F589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Types", "sources\NeoSharp.Types\NeoSharp.Types.csproj", "{6803F037-FAF1-493B-92C7-232B3205F589}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Cryptography", "NeoSharp.Cryptography\NeoSharp.Cryptography.csproj", "{252B2CA4-D77D-445B-B332-555E5A067677}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Cryptography", "sources\NeoSharp.Cryptography\NeoSharp.Cryptography.csproj", "{252B2CA4-D77D-445B-B332-555E5A067677}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Logging", "NeoSharp.Logging\NeoSharp.Logging.csproj", "{C64EAB62-9A2A-48E5-9EDE-70FA993E6AAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Logging", "sources\NeoSharp.Logging\NeoSharp.Logging.csproj", "{C64EAB62-9A2A-48E5-9EDE-70FA993E6AAD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Communications", "NeoSharp.Communications\NeoSharp.Communications.csproj", "{1D591985-DB73-4F52-9EA6-05015DB363F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Communications", "sources\NeoSharp.Communications\NeoSharp.Communications.csproj", "{1D591985-DB73-4F52-9EA6-05015DB363F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.DbAccess", "NeoSharp.DbAccess\NeoSharp.DbAccess.csproj", "{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.DbAccess", "sources\NeoSharp.DbAccess\NeoSharp.DbAccess.csproj", "{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Rpc", "NeoSharp.Rpc\NeoSharp.Rpc.csproj", "{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Rpc", "sources\NeoSharp.Rpc\NeoSharp.Rpc.csproj", "{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.DependencyInjection", "NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj", "{4A88607B-14B8-4F53-B626-B6FC5599BFB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.DependencyInjection", "sources\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj", "{4A88607B-14B8-4F53-B626-B6FC5599BFB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Logging.NLog", "NeoSharp.Logging.NLog\NeoSharp.Logging.NLog.csproj", "{52DF6C35-7FDC-45FF-98C9-6391F86CB210}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Logging.NLog", "sources\NeoSharp.Logging.NLog\NeoSharp.Logging.NLog.csproj", "{52DF6C35-7FDC-45FF-98C9-6391F86CB210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Core", "NeoSharp.Core\NeoSharp.Core.csproj", "{1BCAAD76-710A-4D98-8FDD-FA30FF82E594}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Core", "sources\NeoSharp.Core\NeoSharp.Core.csproj", "{1BCAAD76-710A-4D98-8FDD-FA30FF82E594}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.DependencyInjection.Unity", "NeoSharp.DependencyInjection.Unity\NeoSharp.DependencyInjection.Unity.csproj", "{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.DependencyInjection.Unity", "sources\NeoSharp.DependencyInjection.Unity\NeoSharp.DependencyInjection.Unity.csproj", "{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CBED77AB-2B21-4DED-88B7-7D07D8C761A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Communications.Tests", "tests\NeoSharp.Communications.Tests\NeoSharp.Communications.Tests.csproj", "{4CB68531-020B-4A42-B713-5E1C5EDDD34D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.TestsHelper", "tests\NeoSharp.TestsHelper\NeoSharp.TestsHelper.csproj", "{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,11 +173,39 @@ Global
 		{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}.Release|x64.Build.0 = Release|Any CPU
 		{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}.Release|x86.ActiveCfg = Release|Any CPU
 		{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}.Release|x86.Build.0 = Release|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Debug|x64.Build.0 = Debug|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Debug|x86.Build.0 = Debug|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Release|x64.ActiveCfg = Release|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Release|x64.Build.0 = Release|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Release|x86.ActiveCfg = Release|Any CPU
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D}.Release|x86.Build.0 = Release|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Debug|x64.Build.0 = Debug|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Debug|x86.Build.0 = Debug|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x64.ActiveCfg = Release|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x64.Build.0 = Release|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x86.ActiveCfg = Release|Any CPU
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {248E7144-00B0-4E73-B95F-22C95B471196}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CB68531-020B-4A42-B713-5E1C5EDDD34D} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
+		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 	EndGlobalSection
 EndGlobal

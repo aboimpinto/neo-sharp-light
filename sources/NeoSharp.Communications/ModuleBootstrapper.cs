@@ -8,8 +8,6 @@ namespace NeoSharp.Communications
         public void Start(IContainer container)
         {
             container.Register<INodeConnector, NodeConnector>();
-
-            // containerBuilder.RegisterModule<ModuleRegister>();
         }
 
         public void Stop()
