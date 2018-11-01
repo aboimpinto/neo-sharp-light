@@ -4,8 +4,6 @@ namespace NeoSharp.Communications
     {
          bool IsReady { get; }
 
-         bool CanHandle(NodeProtocol nodeProtocol);
-
         void Connect(PeerEndPoint peerEndPoint);
     }
 }

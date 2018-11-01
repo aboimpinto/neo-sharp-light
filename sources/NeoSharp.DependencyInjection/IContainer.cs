@@ -9,7 +9,17 @@ namespace NeoSharp.DependencyInjection
         TEntity Resolve<TEntity>()
             where TEntity : class;
 
+        TEntity Resolve<TEntity>(string instanceName)
+            where TEntity : class;
+
         void Register<TService, TImplementation>()
+            where TService : class
+            where TImplementation : class, TService;
+
+        void Register<TService>(TService implementation)
+            where TService : class;
+
+        void Register<TService, TImplementation>(string instanceName)
             where TService : class
             where TImplementation : class, TService;
         

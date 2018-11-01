@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NeoSharp.Communications.PeerFactory;
 using NeoSharp.Core;
 using NeoSharp.Core.Extensions;
 using NeoSharp.Logging;
@@ -10,6 +11,7 @@ namespace NeoSharp.Communications
 {
     public class NodeConnector : INodeConnector
     {
+        private readonly IPeerFactory peerFactory;
         private readonly ILogger<NodeConnector> logger;
         private bool isNodeRunning;
         private NetworkConfiguration networkConfiguration;
@@ -17,9 +19,11 @@ namespace NeoSharp.Communications
 
         public NodeConnector(
             INeoSharpContext neoSharpContext,
+            IPeerFactory peerFactory,
             ILogger<NodeConnector> logger)
         {
             this.networkConfiguration = neoSharpContext.ApplicationConfiguration.LoadConfiguration<NetworkConfiguration>();
+            this.peerFactory = peerFactory;
             this.logger = logger;
         }
 
@@ -44,6 +48,9 @@ namespace NeoSharp.Communications
                 .Peers
                 .Select(x => new PeerEndPoint(x))
                 .ToList();
+
+            var peer1 = this.peerFactory.Create(this.peersEndPoint.First().NodeProtocol);
+            var peer2 = this.peerFactory.Create(this.peersEndPoint.Last().NodeProtocol);
 
             // Parallel.ForEach(this.networkConfiguration.Peers, peer => 
             // {
