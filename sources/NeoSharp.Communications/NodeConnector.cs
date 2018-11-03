@@ -15,7 +15,7 @@ namespace NeoSharp.Communications
         private readonly ILogger<NodeConnector> logger;
         private bool isNodeRunning;
         private NetworkConfiguration networkConfiguration;
-        private IEnumerable<PeerEndPoint> peersEndPoint;
+        private IList<IPeer> connectedPeers;
 
         public NodeConnector(
             INeoSharpContext neoSharpContext,
@@ -25,6 +25,8 @@ namespace NeoSharp.Communications
             this.networkConfiguration = neoSharpContext.ApplicationConfiguration.LoadConfiguration<NetworkConfiguration>();
             this.peerFactory = peerFactory;
             this.logger = logger;
+
+            this.connectedPeers = new List<IPeer>();
         }
 
         /// <inheritdoc />
@@ -44,18 +46,15 @@ namespace NeoSharp.Communications
 
         private void ConnectToPeers()
         {
-            this.peersEndPoint = this.networkConfiguration
-                .Peers
-                .Select(x => new PeerEndPoint(x))
-                .ToList();
+            Parallel.ForEach(this.networkConfiguration.Peers, peerAddress => 
+            {
+                var peerEndPoint = new PeerEndPoint(peerAddress);
 
-            var peer1 = this.peerFactory.Create(this.peersEndPoint.First().NodeProtocol);
-            var peer2 = this.peerFactory.Create(this.peersEndPoint.Last().NodeProtocol);
+                var peer = this.peerFactory.Create(peerEndPoint.NodeProtocol);
+                peer.Connect(peerEndPoint);
 
-            // Parallel.ForEach(this.networkConfiguration.Peers, peer => 
-            // {
-
-            // });
+                this.connectedPeers.Add(peer);
+            });
         }
     }
 }
