@@ -16,6 +16,7 @@ namespace NeoSharp.Communications
             var peerFactory = new PeerFactory.PeerFactory(funcFactory);
             container.Register<IPeerFactory>(peerFactory);
 
+            container.Register<ITcpStreamerFactory, TcpStreamerFactory>();
             container.Register<INodeConnector, NodeConnector>();
         }
 

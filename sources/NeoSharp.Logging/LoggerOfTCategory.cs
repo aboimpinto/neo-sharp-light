@@ -52,7 +52,7 @@ namespace NeoSharp.Logging
         /// <inheritdoc />
         public void LogError(Exception exception, string message, params object[] args)
         {
-            this.LogError(exception, message, args);
+            this.logger.LogError(exception, message, args);
         }
 
         /// <inheritdoc />

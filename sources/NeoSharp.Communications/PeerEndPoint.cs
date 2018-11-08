@@ -55,6 +55,11 @@ namespace NeoSharp.Communications
             this.GetIPAddress();
         }
 
+        public override string ToString()
+        {
+            return $"{this.NodeProtocol.ToString()}://{this.Host}:{this.Port}";
+        }
+
         private void GetIPAddress()
         {
             if (IPAddress.TryParse(this.Host, out var ipAddress))
