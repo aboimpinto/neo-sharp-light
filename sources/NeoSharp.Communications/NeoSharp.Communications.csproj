@@ -3,6 +3,7 @@
     <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />
     <ProjectReference Include="..\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj" />
     <ProjectReference Include="..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
+    <ProjectReference Include="..\NeoSharp.Cryptography\NeoSharp.Cryptography.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" />

@@ -1,18 +1,24 @@
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NeoSharp.Communications.Messages;
 using NeoSharp.Core;
+using NeoSharp.Cryptography;
 
 namespace NeoSharp.Communications.Protocols
 {
     public class ProtocolV1 : IProtocol
     {
-        private readonly INeoSharpContext neoSharpContext;
+        private readonly ICommunicationsContext communicationsContext;
+        private readonly ICrypto crypto;
 
-        public ProtocolV1(INeoSharpContext neoSharpContext)
+        public ProtocolV1(
+            ICommunicationsContext communicationsContext,
+            ICrypto crypto)
         {
-            this.neoSharpContext = neoSharpContext;
+            this.communicationsContext = communicationsContext;
+            this.crypto = crypto;
         }
 
         public uint Version => 1;
@@ -24,9 +30,27 @@ namespace NeoSharp.Communications.Protocols
             throw new System.NotImplementedException();
         }
 
-        public Task SendMessageAsync(Stream stream, Message message, CancellationToken cancellationToken)
+        public async Task SendMessageAsync(Stream stream, Message message, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var binaryWritter = new BinaryWriter(memoryStream, Encoding.UTF8))
+                {
+                    binaryWritter.Write(this.communicationsContext.NetworkConfiguration.Magic);
+                    binaryWritter.Write(Encoding.UTF8.GetBytes(message.Command.ToString().PadRight(12, '\0')));
+
+                    // write the payload
+                    var payloadBuffer = new byte[0];
+
+                    binaryWritter.Write((uint)payloadBuffer.Length);
+                     binaryWritter.Write(this.crypto.Checksum(payloadBuffer));
+                    binaryWritter.Write(payloadBuffer);
+                    binaryWritter.Flush();
+
+                    var buffer = memoryStream.ToArray();
+                    await memoryStream.WriteAsync(buffer, 0, buffer.Length, cancellationToken);
+                }
+            }
         }
     }
 }

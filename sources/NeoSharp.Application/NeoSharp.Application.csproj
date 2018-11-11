@@ -15,6 +15,8 @@
     <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />
     <ProjectReference Include="..\NeoSharp.Communications\NeoSharp.Communications.csproj" />
     <ProjectReference Include="..\NeoSharp.DependencyInjection.Unity\NeoSharp.DependencyInjection.Unity.csproj" />
+    <ProjectReference Include="..\NeoSharp.Cryptography\NeoSharp.Cryptography.csproj" />
+    <ProjectReference Include="..\NeoSharp.Cryptography.BouncyCastle\NeoSharp.Cryptography.BouncyCastle.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">

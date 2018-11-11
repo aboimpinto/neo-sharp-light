@@ -31,6 +31,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Communications.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.TestsHelper", "tests\NeoSharp.TestsHelper\NeoSharp.TestsHelper.csproj", "{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{C240E434-6300-40CE-923D-D59A7731588A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Cryptography.BouncyCastle", "sources\NeoSharp.Cryptography.BouncyCastle\NeoSharp.Cryptography.BouncyCastle.csproj", "{796AEC93-C34C-4559-999C-DFA135375586}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Cryptography.BouncyCastle.Tests", "tests\NeoSharp.Cryptography.BouncyCastle.Tests\NeoSharp.Cryptography.BouncyCastle.Tests.csproj", "{E8D6D650-0B61-4743-80CB-8D60764FE8D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +203,30 @@ Global
 		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x64.Build.0 = Release|Any CPU
 		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x86.ActiveCfg = Release|Any CPU
 		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}.Release|x86.Build.0 = Release|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Debug|x64.Build.0 = Debug|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Debug|x86.Build.0 = Debug|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Release|x64.ActiveCfg = Release|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Release|x64.Build.0 = Release|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Release|x86.ActiveCfg = Release|Any CPU
+		{796AEC93-C34C-4559-999C-DFA135375586}.Release|x86.Build.0 = Release|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Debug|x64.Build.0 = Debug|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Debug|x86.Build.0 = Debug|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x64.ActiveCfg = Release|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x64.Build.0 = Release|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x86.ActiveCfg = Release|Any CPU
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -207,5 +237,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4CB68531-020B-4A42-B713-5E1C5EDDD34D} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
+		{796AEC93-C34C-4559-999C-DFA135375586} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{E8D6D650-0B61-4743-80CB-8D60764FE8D8} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 	EndGlobalSection
 EndGlobal
