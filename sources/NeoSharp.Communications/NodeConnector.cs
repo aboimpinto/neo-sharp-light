@@ -12,18 +12,18 @@ namespace NeoSharp.Communications
 {
     public class NodeConnector : INodeConnector
     {
+        private readonly ICommunicationsContext communicationsContext;
         private readonly IPeerFactory peerFactory;
         private readonly ILogger<NodeConnector> logger;
         private bool isNodeRunning;
-        private NetworkConfiguration networkConfiguration;
         private IList<IPeer> connectedPeers;
 
         public NodeConnector(
-            INeoSharpContext neoSharpContext,
+            ICommunicationsContext communicationsContext,
             IPeerFactory peerFactory,
             ILogger<NodeConnector> logger)
         {
-            this.networkConfiguration = neoSharpContext.ApplicationConfiguration.LoadConfiguration<NetworkConfiguration>();
+            this.communicationsContext = communicationsContext;
             this.peerFactory = peerFactory;
             this.logger = logger;
 
@@ -47,7 +47,7 @@ namespace NeoSharp.Communications
 
         private void ConnectToPeers()
         {
-            Parallel.ForEach(this.networkConfiguration.Peers, peerAddress => 
+            Parallel.ForEach(this.communicationsContext.NetworkConfiguration.Peers, peerAddress => 
             {
                 var peerEndPoint = new PeerEndPoint(peerAddress);
 

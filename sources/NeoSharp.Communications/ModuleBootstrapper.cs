@@ -1,6 +1,7 @@
 using System;
 using NeoSharp.Communications.PeerFactory;
 using NeoSharp.Communications.Peers;
+using NeoSharp.Communications.Protocols;
 using NeoSharp.Core;
 using NeoSharp.DependencyInjection;
 
@@ -10,6 +11,8 @@ namespace NeoSharp.Communications
     {
         public void Start(IContainer container)
         {
+            container.RegisterSingleton<ICommunicationsContext, CommunicationsContext>();
+
             container.Register<IPeer, TcpPeer>(NodeProtocol.tcp.ToString());
 
             Func<NodeProtocol, IPeer> funcFactory = nodeProtocol => container.Resolve<IPeer>(nodeProtocol.ToString());
@@ -18,6 +21,8 @@ namespace NeoSharp.Communications
 
             container.Register<ITcpStreamerFactory, TcpStreamerFactory>();
             container.Register<INodeConnector, NodeConnector>();
+
+            container.Register<IProtocol, ProtocolV1>();
         }
 
         public void Stop()
