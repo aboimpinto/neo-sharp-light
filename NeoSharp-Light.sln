@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Cryptography.Bounc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Cryptography.BouncyCastle.Tests", "tests\NeoSharp.Cryptography.BouncyCastle.Tests\NeoSharp.Cryptography.BouncyCastle.Tests.csproj", "{E8D6D650-0B61-4743-80CB-8D60764FE8D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Serialization", "sources\NeoSharp.Serialization\NeoSharp.Serialization.csproj", "{11CA7320-5025-444E-8DBA-6547163C9A2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -227,6 +229,18 @@ Global
 		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x64.Build.0 = Release|Any CPU
 		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{E8D6D650-0B61-4743-80CB-8D60764FE8D8}.Release|x86.Build.0 = Release|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Debug|x64.Build.0 = Debug|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Debug|x86.Build.0 = Debug|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Release|x64.ActiveCfg = Release|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Release|x64.Build.0 = Release|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{11CA7320-5025-444E-8DBA-6547163C9A2C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -239,5 +253,6 @@ Global
 		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 		{796AEC93-C34C-4559-999C-DFA135375586} = {C240E434-6300-40CE-923D-D59A7731588A}
 		{E8D6D650-0B61-4743-80CB-8D60764FE8D8} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
+		{11CA7320-5025-444E-8DBA-6547163C9A2C} = {C240E434-6300-40CE-923D-D59A7731588A}
 	EndGlobalSection
 EndGlobal

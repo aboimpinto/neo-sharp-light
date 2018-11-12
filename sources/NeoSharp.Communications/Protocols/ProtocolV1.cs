@@ -40,6 +40,10 @@ namespace NeoSharp.Communications.Protocols
                     binaryWritter.Write(Encoding.UTF8.GetBytes(message.Command.ToString().PadRight(12, '\0')));
 
                     // write the payload
+                    // var payloadBuffer = message is ICarryPayload messageWithPayload ?
+                    //     this.serializer.BinarySerialize(messageWithPayload) : 
+                    //     new byte[0];
+
                     var payloadBuffer = new byte[0];
 
                     binaryWritter.Write((uint)payloadBuffer.Length);
