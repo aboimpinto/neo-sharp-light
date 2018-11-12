@@ -92,6 +92,8 @@ namespace NeoSharp.Application
                     moduleBootstrapInstance.Start(this.dependencyInjectionContainer);
                 }
             }
+
+            var xx = this.dependencyInjectionContainer.Resolve<NeoSharp.Serialization.IBinarySerializer>();
         }
     }
 }

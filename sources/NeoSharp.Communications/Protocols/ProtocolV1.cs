@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using NeoSharp.Communications.Messages;
 using NeoSharp.Core;
 using NeoSharp.Cryptography;
+using NeoSharp.Serialization;
 
 namespace NeoSharp.Communications.Protocols
 {
@@ -12,13 +13,16 @@ namespace NeoSharp.Communications.Protocols
     {
         private readonly ICommunicationsContext communicationsContext;
         private readonly ICrypto crypto;
+        private readonly IBinarySerializer serializer;
 
         public ProtocolV1(
             ICommunicationsContext communicationsContext,
-            ICrypto crypto)
+            ICrypto crypto, 
+            IBinarySerializer serializer)
         {
             this.communicationsContext = communicationsContext;
             this.crypto = crypto;
+            this.serializer = serializer;
         }
 
         public uint Version => 1;
@@ -40,11 +44,11 @@ namespace NeoSharp.Communications.Protocols
                     binaryWritter.Write(Encoding.UTF8.GetBytes(message.Command.ToString().PadRight(12, '\0')));
 
                     // write the payload
-                    // var payloadBuffer = message is ICarryPayload messageWithPayload ?
-                    //     this.serializer.BinarySerialize(messageWithPayload) : 
-                    //     new byte[0];
+                    var payloadBuffer = message is ICarryPayload messageWithPayload ?
+                        this.serializer.Serialize(messageWithPayload.Payload) : 
+                        new byte[0];
 
-                    var payloadBuffer = new byte[0];
+                    // var payloadBuffer = new byte[0];
 
                     binaryWritter.Write((uint)payloadBuffer.Length);
                      binaryWritter.Write(this.crypto.Checksum(payloadBuffer));
