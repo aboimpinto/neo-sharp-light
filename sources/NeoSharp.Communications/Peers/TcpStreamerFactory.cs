@@ -24,7 +24,7 @@ namespace NeoSharp.Communications.Peers
 
             try
             {
-                await socket.ConnectAsync(peerEndPoint.IpAddress, peerEndPoint.Port);
+                await socket.ConnectAsync(peerEndPoint.IpAddress, peerEndPoint.Port).ConfigureAwait(false);
                 this.logger.LogError($"Connection to {peerEndPoint.ToString()} established.");
             }
             catch (Exception ex)

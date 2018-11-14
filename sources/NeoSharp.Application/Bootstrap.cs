@@ -11,11 +11,12 @@ using NeoSharp.DependencyInjection.Unity;
 
 namespace NeoSharp.Application
 {
-    public class Bootstrap : IDisposable
+        public class Bootstrap : IDisposable
     {
-        private IConfigurationRoot neoSharpConfiguration;
-        private ModuleConfiguration moduleConfiguration;
-        private IContainer dependencyInjectionContainer;
+        private readonly IConfigurationRoot neoSharpConfiguration;
+        private readonly ModuleConfiguration moduleConfiguration;
+        private readonly IContainer dependencyInjectionContainer;
+
         private bool disposed = false;
 
         public Bootstrap()
@@ -30,6 +31,9 @@ namespace NeoSharp.Application
             this.dependencyInjectionContainer = new Container();
         }
 
+        /// <summary>
+        /// Start bootstrapping.
+        /// </summary>
         public void Start()
         {
             this.LoadModules();

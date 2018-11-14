@@ -3,7 +3,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NeoSharp.Communications.Messages;
-using NeoSharp.Core;
 using NeoSharp.Cryptography;
 using NeoSharp.Serialization;
 

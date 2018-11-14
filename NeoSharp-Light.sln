@@ -19,25 +19,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Rpc", "sources\Neo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.DependencyInjection", "sources\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj", "{4A88607B-14B8-4F53-B626-B6FC5599BFB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Logging.NLog", "sources\NeoSharp.Logging.NLog\NeoSharp.Logging.NLog.csproj", "{52DF6C35-7FDC-45FF-98C9-6391F86CB210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Logging.NLog", "sources\NeoSharp.Logging.NLog\NeoSharp.Logging.NLog.csproj", "{52DF6C35-7FDC-45FF-98C9-6391F86CB210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Core", "sources\NeoSharp.Core\NeoSharp.Core.csproj", "{1BCAAD76-710A-4D98-8FDD-FA30FF82E594}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Core", "sources\NeoSharp.Core\NeoSharp.Core.csproj", "{1BCAAD76-710A-4D98-8FDD-FA30FF82E594}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.DependencyInjection.Unity", "sources\NeoSharp.DependencyInjection.Unity\NeoSharp.DependencyInjection.Unity.csproj", "{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.DependencyInjection.Unity", "sources\NeoSharp.DependencyInjection.Unity\NeoSharp.DependencyInjection.Unity.csproj", "{BB4AABD3-7ED7-42A2-A335-D46E7F71488B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CBED77AB-2B21-4DED-88B7-7D07D8C761A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Communications.Tests", "tests\NeoSharp.Communications.Tests\NeoSharp.Communications.Tests.csproj", "{4CB68531-020B-4A42-B713-5E1C5EDDD34D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Communications.Tests", "tests\NeoSharp.Communications.Tests\NeoSharp.Communications.Tests.csproj", "{4CB68531-020B-4A42-B713-5E1C5EDDD34D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.TestsHelper", "tests\NeoSharp.TestsHelper\NeoSharp.TestsHelper.csproj", "{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.TestsHelper", "tests\NeoSharp.TestsHelper\NeoSharp.TestsHelper.csproj", "{C891C1A4-8C11-4AD4-8700-5641D8C8BB70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{C240E434-6300-40CE-923D-D59A7731588A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Cryptography.BouncyCastle", "sources\NeoSharp.Cryptography.BouncyCastle\NeoSharp.Cryptography.BouncyCastle.csproj", "{796AEC93-C34C-4559-999C-DFA135375586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Cryptography.BouncyCastle", "sources\NeoSharp.Cryptography.BouncyCastle\NeoSharp.Cryptography.BouncyCastle.csproj", "{796AEC93-C34C-4559-999C-DFA135375586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Cryptography.BouncyCastle.Tests", "tests\NeoSharp.Cryptography.BouncyCastle.Tests\NeoSharp.Cryptography.BouncyCastle.Tests.csproj", "{E8D6D650-0B61-4743-80CB-8D60764FE8D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Cryptography.BouncyCastle.Tests", "tests\NeoSharp.Cryptography.BouncyCastle.Tests\NeoSharp.Cryptography.BouncyCastle.Tests.csproj", "{E8D6D650-0B61-4743-80CB-8D60764FE8D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Serialization", "sources\NeoSharp.Serialization\NeoSharp.Serialization.csproj", "{11CA7320-5025-444E-8DBA-6547163C9A2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Serialization", "sources\NeoSharp.Serialization\NeoSharp.Serialization.csproj", "{11CA7320-5025-444E-8DBA-6547163C9A2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -245,14 +245,25 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {248E7144-00B0-4E73-B95F-22C95B471196}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{C4822213-75ED-45DB-A63A-5ECA12578D31} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{6803F037-FAF1-493B-92C7-232B3205F589} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{252B2CA4-D77D-445B-B332-555E5A067677} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{C64EAB62-9A2A-48E5-9EDE-70FA993E6AAD} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{1D591985-DB73-4F52-9EA6-05015DB363F9} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{981D0D6F-BD51-45C1-AFB3-1C6F038BABDC} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{4DC3D46E-EA58-4C6D-ABE3-41E98D0795D7} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{4A88607B-14B8-4F53-B626-B6FC5599BFB7} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{52DF6C35-7FDC-45FF-98C9-6391F86CB210} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{1BCAAD76-710A-4D98-8FDD-FA30FF82E594} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{BB4AABD3-7ED7-42A2-A335-D46E7F71488B} = {C240E434-6300-40CE-923D-D59A7731588A}
 		{4CB68531-020B-4A42-B713-5E1C5EDDD34D} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 		{C891C1A4-8C11-4AD4-8700-5641D8C8BB70} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 		{796AEC93-C34C-4559-999C-DFA135375586} = {C240E434-6300-40CE-923D-D59A7731588A}
 		{E8D6D650-0B61-4743-80CB-8D60764FE8D8} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 		{11CA7320-5025-444E-8DBA-6547163C9A2C} = {C240E434-6300-40CE-923D-D59A7731588A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {248E7144-00B0-4E73-B95F-22C95B471196}
 	EndGlobalSection
 EndGlobal

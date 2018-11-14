@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NeoSharp.Application</name>
+    </assembly>
+    <members>
+        <member name="M:NeoSharp.Application.Bootstrap.Start">
+            <summary>
+            Start bootstrapping.
+            </summary>
+        </member>
+        <member name="T:NeoSharp.Application.Program">
+            <summary>
+            Entry point of the NeoSharp-Light.
+            </summary>
+        </member>
+        <member name="M:NeoSharp.Application.Program.Main(System.String[])">
+            <summary>
+            Main method.
+            </summary>
+            <param name="args">arguments passes in the CLI.</param>
+        </member>
+    </members>
+</doc>

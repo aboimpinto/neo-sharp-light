@@ -1,6 +1,6 @@
 namespace NeoSharp.Communications.Messages
 {
-    public enum MessageCommand : byte
+    public enum MessageCommand 
     {
         //notfound = 0x00,
 

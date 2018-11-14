@@ -7,4 +7,8 @@
   <PropertyGroup>
 		<CodeAnalysisRuleSet>$(SolutionDir)ca.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\ca.ruleset" Link="ca.ruleset" />
+  </ItemGroup>
 </Project>

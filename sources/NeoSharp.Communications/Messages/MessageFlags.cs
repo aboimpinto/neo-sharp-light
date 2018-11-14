@@ -1,6 +1,6 @@
 namespace NeoSharp.Communications.Messages
 {
-    public enum MessageFlags : byte
+    public enum MessageFlag 
     {
         /// <summary>
         /// No flag
