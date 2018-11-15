@@ -55,7 +55,7 @@ namespace NeoSharp.Communications.Protocols
                     binaryWritter.Flush();
 
                     var buffer = memoryStream.ToArray();
-                    await memoryStream.WriteAsync(buffer, 0, buffer.Length, cancellationToken);
+                    await memoryStream.WriteAsync(buffer, 0, buffer.Length, cancellationToken).ConfigureAwait(false);
                 }
             }
         }

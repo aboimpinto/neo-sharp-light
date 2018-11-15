@@ -1,4 +1,3 @@
-using System;
 using NeoSharp.Communications.PeerFactory;
 using NeoSharp.Communications.Peers;
 using NeoSharp.Communications.Protocols;
@@ -15,7 +14,7 @@ namespace NeoSharp.Communications
 
             container.Register<IPeer, TcpPeer>(NodeProtocol.tcp.ToString());
 
-            Func<NodeProtocol, IPeer> funcFactory = nodeProtocol => container.Resolve<IPeer>(nodeProtocol.ToString());
+            IPeer funcFactory(NodeProtocol nodeProtocol) => container.Resolve<IPeer>(nodeProtocol.ToString());
             var peerFactory = new PeerFactory.PeerFactory(funcFactory);
             container.Register<IPeerFactory>(peerFactory);
 

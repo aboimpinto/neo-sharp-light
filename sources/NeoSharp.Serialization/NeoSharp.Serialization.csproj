@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />
+    <ProjectReference Include="..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 
 namespace NeoSharp.DependencyInjection.Unity
@@ -21,6 +22,12 @@ namespace NeoSharp.DependencyInjection.Unity
             where TEntity : class
         {
             return this.container.Resolve<TEntity>();
+        }
+
+        public IEnumerable<TEntity> ResolveAll<TEntity>()
+            where TEntity : class
+        {
+            return this.container.ResolveAll<TEntity>();
         }
 
         public TEntity Resolve<TEntity>(string instanceName)
@@ -59,6 +66,11 @@ namespace NeoSharp.DependencyInjection.Unity
             where TImplementation : class, TService
         {
             this.container.RegisterType<TService, TImplementation>(new ContainerControlledLifetimeManager());
+        }
+
+        public void RegisterTypes(IEnumerable<Type> collectionOfTypes)
+        {
+            this.container.RegisterTypes(collectionOfTypes);
         }
     }
 }

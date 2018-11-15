@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace NeoSharp.DependencyInjection
 {
@@ -7,6 +8,9 @@ namespace NeoSharp.DependencyInjection
         object Resolve(Type serviceType);
 
         TEntity Resolve<TEntity>()
+            where TEntity : class;
+
+        IEnumerable<TEntity> ResolveAll<TEntity>()
             where TEntity : class;
 
         TEntity Resolve<TEntity>(string instanceName)
@@ -24,9 +28,11 @@ namespace NeoSharp.DependencyInjection
             where TImplementation : class, TService;
         
         void Register(Type service, Type implementation);
-
+        
         void RegisterSingleton<TService, TImplementation>()
             where TService : class
             where TImplementation : class, TService;
+
+        void RegisterTypes(IEnumerable<Type> collectionOfTypes);
     }
 }

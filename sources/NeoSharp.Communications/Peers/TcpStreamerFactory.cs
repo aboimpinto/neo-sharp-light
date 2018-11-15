@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using NeoSharp.Logging;
@@ -25,7 +24,7 @@ namespace NeoSharp.Communications.Peers
             try
             {
                 await socket.ConnectAsync(peerEndPoint.IpAddress, peerEndPoint.Port).ConfigureAwait(false);
-                this.logger.LogError($"Connection to {peerEndPoint.ToString()} established.");
+                this.logger.LogInformation($"Connection to {peerEndPoint.ToString()} established.");
             }
             catch (Exception ex)
             {

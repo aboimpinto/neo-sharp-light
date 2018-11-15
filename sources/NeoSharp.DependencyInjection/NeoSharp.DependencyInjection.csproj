@@ -4,14 +4,12 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Include="IModule.cs"/>
-    <Content Include="IContainerModule.cs"/>
-    <Content Include="IContainer.cs"/>
-    <Content Include="IContainer.cs"/>
+    <Content Include="IContainer.cs" />
+    <Content Include="IContainer.cs" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="SimpleInjector" Version="4.3.0"/>
+    <PackageReference Include="SimpleInjector" Version="4.3.0" />
   </ItemGroup>
 
   <PropertyGroup>
