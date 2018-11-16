@@ -1,23 +1,26 @@
 ﻿using System;
 using System.IO;
+using System.Text;
+using NeoSharp.Serialization.ExtensionMethods;
 
 namespace NeoSharp.Serialization.CustomSerializers
 {
-    public class UInt32CustomSerializer : ICustomSerializer
+    public class StringCustomSerializer : ICustomSerializer
     {
         public bool CanHandle(Type typeToHandle)
         {
-            return typeof(uint) == typeToHandle;
+            return typeof(string) == typeToHandle;
         }
 
         public object Deserialize(BinaryReader binaryReader)
         {
-            return binaryReader.ReadUInt32();
+            return binaryReader.ReadVarString();
         }
 
         public void Serialize(BinaryWriter binaryWriter, object value)
         {
-            binaryWriter.Write((uint)value);
+            var data = Encoding.UTF8.GetBytes((string)value);
+            binaryWriter.WriteVarBytes(data);
         }
     }
 }

@@ -9,7 +9,11 @@ namespace NeoSharp.Serialization
     {
         public void Start(IContainer container)
         {
+            container.Register<ICustomSerializer, UInt16CustomSerializer>(typeof(UInt16CustomSerializer).Name);
             container.Register<ICustomSerializer, UInt32CustomSerializer>(typeof(UInt32CustomSerializer).Name);
+            container.Register<ICustomSerializer, UInt64CustomSerializer>(typeof(UInt64CustomSerializer).Name);
+            container.Register<ICustomSerializer, StringCustomSerializer>(typeof(StringCustomSerializer).Name);
+            container.Register<ICustomSerializer, BooleanCustomSerializer>(typeof(BooleanCustomSerializer).Name);
 
             var typesOfCustomSerializers = typeof(ICustomSerializer)
                 .Assembly

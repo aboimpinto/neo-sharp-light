@@ -21,7 +21,7 @@ namespace NeoSharp.Communications
                     Services = 1,
                     Timestamp = DateTime.UtcNow.ToTimestamp(),
                     Port = this.NetworkConfiguration.Port,
-                    Nonce = 0,
+                    Nonce = (uint)new Random(Environment.TickCount).Next(),
                     UserAgent = $"/NEO-Sharp-Light:{Assembly.GetExecutingAssembly().GetName().Version.ToString(3)}/",
                     CurrentBlockIndex = 0,
                     Relay = true

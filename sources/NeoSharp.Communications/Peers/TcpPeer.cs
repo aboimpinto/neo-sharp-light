@@ -19,8 +19,6 @@ namespace NeoSharp.Communications.Peers
         private readonly IProtocol protocol;
         private readonly SafeQueue<Message> sendMessageQueue;
 
-        private readonly Socket peerSocket;
-        private readonly NetworkStream peerNetworkStream;
         private readonly CancellationTokenSource cancellationTokenSource;
         private PeerEndPoint peerEndPoint;
 
@@ -81,7 +79,7 @@ namespace NeoSharp.Communications.Peers
 
                 try
                 {
-                    var msg = await this.protocol.ReceiveMessageAsync(this.peerNetworkStream, receiveCancelationTokenSource.Token).ConfigureAwait(false);
+                    var msg = await this.protocol.ReceiveMessageAsync(this.tcpStreamerFactory.TcpNetworkStream, receiveCancelationTokenSource.Token).ConfigureAwait(false);
                     this.logger.LogInformation($"Message received: {msg.Command}.");
 
                     return msg;
@@ -112,11 +110,7 @@ namespace NeoSharp.Communications.Peers
             if (disposing)
             {
                 this.cancellationTokenSource.Cancel();
-
-                this.peerSocket.Shutdown(SocketShutdown.Both);
-                this.peerNetworkStream.Dispose();
-                this.peerSocket.Dispose();
-
+                this.tcpStreamerFactory.Dispose();
                 this.cancellationTokenSource.Dispose();
 
                 this.logger.LogInformation($"The peer {this.peerEndPoint.ToString()} was disconnected.");
@@ -127,13 +121,13 @@ namespace NeoSharp.Communications.Peers
 
         private void PeerListenerInitialization()
         {
-            this.QueueMessageToSend(new VersionMessage(this.communicationsContext.VersionPayload));
+            //this.QueueMessageToSend(new VersionMessage(this.communicationsContext.VersionPayload));
 
             Task.Run(async () =>
             {
                 while (!this.cancellationTokenSource.IsCancellationRequested)
                 {
-                    if (this.peerNetworkStream.DataAvailable)
+                    if (this.tcpStreamerFactory.TcpNetworkStream.DataAvailable)
                     {
                         var receivedMessage = await this.Receive().ConfigureAwait(false);
                     }
@@ -170,7 +164,7 @@ namespace NeoSharp.Communications.Peers
                 try
                 {
                     this.logger.LogDebug($"Sending message {message.Command} send to {this.peerEndPoint.ToString()}.");
-                    await this.protocol.SendMessageAsync(this.peerNetworkStream, message, socketTokenSource.Token).ConfigureAwait(false);
+                    await this.protocol.SendMessageAsync(this.tcpStreamerFactory.TcpNetworkStream, message, socketTokenSource.Token).ConfigureAwait(false);
                     this.logger.LogInformation($"Message {message.Command} sended to {this.peerEndPoint.ToString()}.");
                 }
                 catch (Exception ex)

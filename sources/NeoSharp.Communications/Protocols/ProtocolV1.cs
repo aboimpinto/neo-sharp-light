@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -10,6 +11,8 @@ namespace NeoSharp.Communications.Protocols
 {
     public class ProtocolV1 : IProtocol
     {
+        private const int MaxBufferSize = 4096;
+
         private readonly ICommunicationsContext communicationsContext;
         private readonly ICrypto crypto;
         private readonly IBinarySerializer serializer;
@@ -28,9 +31,23 @@ namespace NeoSharp.Communications.Protocols
 
         public bool IsDefault => true;
 
-        public Task<Message> ReceiveMessageAsync(Stream stream, CancellationToken cancellationToken)
+        public async Task<Message> ReceiveMessageAsync(Stream stream, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var messsageBuffer = await this
+                .FillBufferAsync(stream, 24, cancellationToken)
+                .ConfigureAwait(false);
+
+            using (var memory = new MemoryStream(messsageBuffer, false))
+            {
+                using (var reader = new BinaryReader(memory, Encoding.UTF8))
+                {
+                    var nodeMagic = reader.ReadUInt32();
+
+                    var command = Enum.Parse(typeof(MessageCommand), Encoding.UTF8.GetString(reader.ReadBytes(12)).TrimEnd('\0'));
+                }
+            }
+
+            return null;
         }
 
         public async Task SendMessageAsync(Stream stream, Message message, CancellationToken cancellationToken)
@@ -44,10 +61,8 @@ namespace NeoSharp.Communications.Protocols
 
                     // write the payload
                     var payloadBuffer = message is ICarryPayload messageWithPayload ?
-                        this.serializer.Serialize(messageWithPayload.Payload) : 
-                        new byte[0];
-
-                    // var payloadBuffer = new byte[0];
+                        this.serializer.Serialize(messageWithPayload.Payload) :
+                        System.Array.Empty<byte>();
 
                     binaryWritter.Write((uint)payloadBuffer.Length);
                      binaryWritter.Write(this.crypto.Checksum(payloadBuffer));
@@ -57,6 +72,30 @@ namespace NeoSharp.Communications.Protocols
                     var buffer = memoryStream.ToArray();
                     await memoryStream.WriteAsync(buffer, 0, buffer.Length, cancellationToken).ConfigureAwait(false);
                 }
+            }
+        }
+
+        private async Task<byte[]> FillBufferAsync(
+            Stream stream,
+            int size,
+            CancellationToken cancellationToken)
+        {
+            var buffer = new byte[Math.Min(size, MaxBufferSize)];
+
+            using (var memory = new MemoryStream())
+            {
+                while (size > 0)
+                {
+                    var count = Math.Min(size, buffer.Length);
+
+                    count = await stream.ReadAsync(buffer, 0, count, cancellationToken).ConfigureAwait(false);
+                    if (count <= 0) throw new IOException();
+
+                    memory.Write(buffer, 0, count);
+                    size -= count;
+                }
+
+                return memory.ToArray();
             }
         }
     }

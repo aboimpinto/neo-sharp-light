@@ -9,6 +9,9 @@ namespace NeoSharp.Communications.Peers
     {
         private readonly ILogger<TcpStreamerFactory> logger;
 
+        private bool disposed = false;
+        private PeerEndPoint peerEndPoint;
+
         public NetworkStream TcpNetworkStream { get; private set; }
 
         public TcpStreamerFactory(ILogger<TcpStreamerFactory> logger)
@@ -18,6 +21,8 @@ namespace NeoSharp.Communications.Peers
 
         public async Task<bool> Connect(PeerEndPoint peerEndPoint)
         {
+            this.peerEndPoint = peerEndPoint;
+
             this.logger.LogDebug($"Connecting to {peerEndPoint.ToString()}...");
             var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -35,6 +40,31 @@ namespace NeoSharp.Communications.Peers
             this.TcpNetworkStream = new NetworkStream(socket, true);
 
             return true;
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                //this.peerSocket.Shutdown(SocketShutdown.Both);
+                this.TcpNetworkStream.Dispose();
+                //this.peerSocket.Dispose();
+
+                this.logger.LogInformation($"The peer {this.peerEndPoint.ToString()} was disconnected.");
+            }
+
+            this.disposed = true;
         }
     }
 }

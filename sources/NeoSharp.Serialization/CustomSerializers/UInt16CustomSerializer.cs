@@ -3,21 +3,21 @@ using System.IO;
 
 namespace NeoSharp.Serialization.CustomSerializers
 {
-    public class UInt32CustomSerializer : ICustomSerializer
+    public class UInt16CustomSerializer : ICustomSerializer
     {
         public bool CanHandle(Type typeToHandle)
         {
-            return typeof(uint) == typeToHandle;
+            return typeof(ushort) == typeToHandle;
         }
 
         public object Deserialize(BinaryReader binaryReader)
         {
-            return binaryReader.ReadUInt32();
+            return binaryReader.ReadUInt16();
         }
 
         public void Serialize(BinaryWriter binaryWriter, object value)
         {
-            binaryWriter.Write((uint)value);
+            binaryWriter.Write((ushort)value);
         }
     }
 }
