@@ -11,7 +11,7 @@ namespace NeoSharp.Communications.Protocols
 
         bool IsDefault { get; }
 
-        Task SendMessageAsync(Stream stream, Message message, CancellationToken cancellationToken);
+        Task SendMessageAsync(Stream stream, IMessage message, CancellationToken cancellationToken);
 
          Task<Message> ReceiveMessageAsync(Stream stream, CancellationToken cancellationToken);
     }

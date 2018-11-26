@@ -1,3 +1,4 @@
+using NeoSharp.Communications.Messages;
 using NeoSharp.Communications.Messages.Payloads;
 
 namespace NeoSharp.Communications
@@ -6,6 +7,6 @@ namespace NeoSharp.Communications
     {
         NetworkConfiguration NetworkConfiguration { get; }
 
-         VersionPayload VersionPayload { get; }
+         VersionMessage VersionMessage { get; }
     }
 }

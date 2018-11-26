@@ -8,8 +8,8 @@ namespace NeoSharp.Core
     {
         private readonly ConcurrentQueue<T> safeList = new ConcurrentQueue<T>();
 
-        private ReaderWriterLockSlim readerWriteLockSlim = new ReaderWriterLockSlim();
-        private AutoResetEvent waitForQueueToChangeEvent = new AutoResetEvent(false);
+        private readonly ReaderWriterLockSlim readerWriteLockSlim = new ReaderWriterLockSlim();
+        private readonly AutoResetEvent waitForQueueToChangeEvent = new AutoResetEvent(false);
 
         public void Enqueue(T item)
         {
@@ -24,10 +24,8 @@ namespace NeoSharp.Core
         {
             if (!this.safeList.Any()) return default(T);
 
-            var dequeueItem = default(T);
-
             this.readerWriteLockSlim.EnterWriteLock();
-            this.safeList.TryDequeue(out dequeueItem);
+            this.safeList.TryDequeue(out var dequeueItem);
             this.readerWriteLockSlim.ExitWriteLock();
 
             return dequeueItem;

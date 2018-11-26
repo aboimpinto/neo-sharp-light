@@ -4,11 +4,18 @@
     <ProjectReference Include="..\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj" />
     <ProjectReference Include="..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
     <ProjectReference Include="..\NeoSharp.Cryptography\NeoSharp.Cryptography.csproj" />
+    <ProjectReference Include="..\NeoSharp.Model\NeoSharp.Model.csproj" />
     <ProjectReference Include="..\NeoSharp.Serialization\NeoSharp.Serialization.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.0-preview3-35497" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>

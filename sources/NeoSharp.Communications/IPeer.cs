@@ -13,6 +13,6 @@ namespace NeoSharp.Communications
 
         void Disconnect();
 
-        void QueueMessageToSend(Message message);
+        //void QueueMessageToSend(IMessage message);
     }
 }

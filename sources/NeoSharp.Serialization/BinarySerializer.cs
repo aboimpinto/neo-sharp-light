@@ -34,7 +34,7 @@ namespace NeoSharp.Serialization
                         try
                         {
                             var customSerializer = this.customSerializers
-                                                .Single(x => x.CanHandle(property.PropertyType));
+                                .Single(x => x.CanHandle(property.PropertyType));
 
                             customSerializer.Serialize(writer, property.GetValue(obj));
                         }
@@ -43,12 +43,34 @@ namespace NeoSharp.Serialization
                             this.logger.LogError(ex, $"Property {property.Name} with type {property.PropertyType} cannot be serialized because missing custom serializer.");
                         }
                     }
-
-                    writer.Flush();
                 }
 
                 return memoryStream.ToArray();
             }
+        }
+
+        public TObject Deserialize<TObject>(BinaryReader reader)
+        {
+            var returnObject = default(TObject);
+
+            var properties = typeof(TObject).GetProperties();
+
+            foreach (var property in properties)
+            {
+                try
+                {
+                    var customSerializer = this.customSerializers
+                        .Single(x => x.CanHandle(property.PropertyType));
+
+                    property.SetValue(returnObject, customSerializer.Deserialize(reader));
+                }
+                catch (Exception ex)
+                {
+                    this.logger.LogError(ex, $"Property {property.Name} with type {property.PropertyType} cannot be deserialized because missing custom serializer.");
+                }
+            }
+
+            return returnObject;
         }
     }
 }

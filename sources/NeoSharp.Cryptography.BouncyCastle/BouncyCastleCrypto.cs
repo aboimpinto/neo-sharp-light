@@ -27,7 +27,12 @@ namespace NeoSharp.Cryptography.BouncyCastle
         /// <inheritdoc />
         public uint Checksum(byte[] byteArray)
         {
-            return this.Sha256(this.Sha256(byteArray, 0, byteArray.Length), 0, 32).ToUInt32();
+            //return this.Sha256(this.Sha256(byteArray, 0, byteArray.Length), 0, 32).ToUInt32();
+
+            var firstSha256 = this.Sha256(byteArray, 0, byteArray.Length);
+            var secondSha256 = this.Sha256(firstSha256, 0, 32);
+
+            return secondSha256.ToUInt32();
         }
     }
 }

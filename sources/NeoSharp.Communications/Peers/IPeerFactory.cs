@@ -1,4 +1,4 @@
-namespace NeoSharp.Communications.PeerFactory
+namespace NeoSharp.Communications.Peers
 {
     public interface IPeerFactory
     {

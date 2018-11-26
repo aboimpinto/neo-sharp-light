@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace NeoSharp.Logging
 {
-    public class Logger<TCategory> : NeoSharp.Logging.ILogger<TCategory>
+    public class Logger<TCategory> : ILogger<TCategory>
     {
         private readonly Microsoft.Extensions.Logging.ILogger<TCategory> logger;
 

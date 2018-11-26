@@ -1,5 +1,4 @@
 using System;
-using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using NeoSharp.Communications.Messages;
@@ -17,12 +16,12 @@ namespace NeoSharp.Communications.Peers
         private readonly ICommunicationsContext communicationsContext;
         private readonly ITcpStreamerFactory tcpStreamerFactory;
         private readonly IProtocol protocol;
-        private readonly SafeQueue<Message> sendMessageQueue;
+        private readonly SafeQueue<IMessage> sendMessageQueue;
 
         private readonly CancellationTokenSource cancellationTokenSource;
         private PeerEndPoint peerEndPoint;
 
-        private bool disposed = false;
+        private bool disposed;
 
         public bool Connected { get; private set; }
 
@@ -39,59 +38,30 @@ namespace NeoSharp.Communications.Peers
             this.logger = logger;
             this.communicationsContext = communicationsContext;
             this.cancellationTokenSource = new CancellationTokenSource();
-            this.sendMessageQueue = new SafeQueue<Message>();
+            this.sendMessageQueue = new SafeQueue<IMessage>();
         }
 
-        public async void Connect(PeerEndPoint peerEndPoint)
+        public async void Connect(PeerEndPoint endPoint)
         {
-            this.peerEndPoint = peerEndPoint;
+            this.peerEndPoint = endPoint;
 
             if (this.Connected)
             {
-                this.logger.LogWarning($"Cannot connect to the peer {peerEndPoint.ToString()} because it's already connected.");
+                this.logger.LogWarning($"Cannot connect to the peer {peerEndPoint} because it's already connected.");
                 return;
             }
 
-            if (await this.tcpStreamerFactory.Connect(peerEndPoint).ConfigureAwait(false))
-            {
-                this.Connected = true;
+            if (!await this.tcpStreamerFactory.Connect(peerEndPoint).ConfigureAwait(false)) return;
 
-                this.SendMessageSmartQueueMonitorInitialization();
-                this.PeerListenerInitialization();
-            }
+            this.Connected = true;
+
+            this.SendMessageSmartQueueMonitorInitialization();
+            this.PeerListenerInitialization();
         }
 
         public void Disconnect()
         {
             this.Dispose();
-        }
-
-        public void QueueMessageToSend(Message message)
-        {
-            this.sendMessageQueue.Enqueue(message);
-        }
-
-        public async Task<Message> Receive()
-        {
-            using (var receiveCancelationTokenSource = new CancellationTokenSource(SocketOperationTimeout))
-            {
-                receiveCancelationTokenSource.Token.Register(this.Disconnect);
-
-                try
-                {
-                    var msg = await this.protocol.ReceiveMessageAsync(this.tcpStreamerFactory.TcpNetworkStream, receiveCancelationTokenSource.Token).ConfigureAwait(false);
-                    this.logger.LogInformation($"Message received: {msg.Command}.");
-
-                    return msg;
-                }
-                catch (Exception ex)
-                {
-                    this.logger.LogError(ex, "Error receiving a message.");
-                    this.Disconnect();
-                }
-            }
-
-            return null;
         }
 
         public void Dispose()
@@ -121,7 +91,7 @@ namespace NeoSharp.Communications.Peers
 
         private void PeerListenerInitialization()
         {
-            //this.QueueMessageToSend(new VersionMessage(this.communicationsContext.VersionPayload));
+            this.QueueMessageToSend(this.communicationsContext.VersionMessage);
 
             Task.Run(async () =>
             {
@@ -129,7 +99,7 @@ namespace NeoSharp.Communications.Peers
                 {
                     if (this.tcpStreamerFactory.TcpNetworkStream.DataAvailable)
                     {
-                        var receivedMessage = await this.Receive().ConfigureAwait(false);
+                        var receivedMessage = await this.ReceiveAsync().ConfigureAwait(false);
                     }
                 }
             }, this.cancellationTokenSource.Token);
@@ -149,13 +119,13 @@ namespace NeoSharp.Communications.Peers
 
                     if (message.Command != MessageCommand.consensus)
                     {
-                        await this.SendMessage(message).ConfigureAwait(false);
+                        await this.SendMessageAsync(message).ConfigureAwait(false);
                     }
                 }
             }, this.cancellationTokenSource.Token);
         }
 
-        private async Task SendMessage(Message message)
+        private async Task SendMessageAsync(IMessage message)
         {
             using(var socketTokenSource = new CancellationTokenSource(SocketOperationTimeout))
             {
@@ -163,16 +133,53 @@ namespace NeoSharp.Communications.Peers
 
                 try
                 {
-                    this.logger.LogDebug($"Sending message {message.Command} send to {this.peerEndPoint.ToString()}.");
-                    await this.protocol.SendMessageAsync(this.tcpStreamerFactory.TcpNetworkStream, message, socketTokenSource.Token).ConfigureAwait(false);
-                    this.logger.LogInformation($"Message {message.Command} sended to {this.peerEndPoint.ToString()}.");
+                    this.logger.LogDebug($"Sending message {message.Command} send to {this.peerEndPoint}.");
+                    if (this.tcpStreamerFactory.StillAlive)
+                    {
+                        await this.protocol.SendMessageAsync(this.tcpStreamerFactory.TcpNetworkStream, message, socketTokenSource.Token).ConfigureAwait(false);
+                        this.logger.LogInformation($"Message {message.Command} sent to {this.peerEndPoint}.");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    this.logger.LogError(ex, $"Error while sending message {message.Command} to {this.peerEndPoint.ToString()}.");
+                    this.logger.LogError(ex, $"Error while sending message {message.Command} to {this.peerEndPoint}.");
                     this.Disconnect();
                 }
             }
+        }
+
+        private async Task<Message> ReceiveAsync()
+        {
+            using (var receiveCancellationTokenSource = new CancellationTokenSource(SocketOperationTimeout))
+            {
+                receiveCancellationTokenSource.Token.Register(this.Disconnect);
+
+                try
+                {
+                    var msg = await this.protocol.ReceiveMessageAsync(this.tcpStreamerFactory.TcpNetworkStream, receiveCancellationTokenSource.Token).ConfigureAwait(false);
+
+                    if (msg == null)
+                    {
+                        this.logger.LogError("Unknown error receiving message");
+                        return null;
+                    }
+                    this.logger.LogInformation($"Message received: {msg.Command}.");
+
+                    return msg;
+                }
+                catch (Exception ex)
+                {
+                    this.logger.LogError(ex, "Error receiving a message.");
+                    this.Disconnect();
+                }
+            }
+
+            return null;
+        }
+
+        private void QueueMessageToSend(IMessage message)
+        {
+            this.sendMessageQueue.Enqueue(message);
         }
     }
 }

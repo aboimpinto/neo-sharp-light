@@ -1,19 +1,35 @@
+using System.IO;
 using NeoSharp.Communications.Messages.Payloads;
+using NeoSharp.Serialization;
 
 namespace NeoSharp.Communications.Messages
 {
-    public class VersionMessage : Message<VersionPayload>
+    public class VersionMessage : IMessage<VersionPayload>, ISerializable<VersionPayload>, IDeserializable<VersionPayload>
     {
-        public VersionMessage()
+        private readonly IBinarySerializer binarySerializer;
+
+        public MessageFlag Flags { get; set; }
+
+        public MessageCommand Command { get; set; }
+
+        public VersionPayload Payload { get; }
+
+        public VersionMessage(IBinarySerializer binarySerializer)
         {
+            this.binarySerializer = binarySerializer;
+
             this.Command = MessageCommand.version;
             this.Payload = new VersionPayload();
         }
 
-        public VersionMessage(VersionPayload versionPayload)
+        public byte[] Serialize(VersionPayload payload)
         {
-            this.Command = MessageCommand.version;
-            this.Payload = versionPayload;
+            return this.binarySerializer.Serialize(payload);
+        }
+
+        public VersionPayload Deserialize(BinaryReader binaryReader)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

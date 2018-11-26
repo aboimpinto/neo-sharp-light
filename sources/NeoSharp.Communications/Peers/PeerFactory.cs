@@ -1,6 +1,6 @@
 using System;
 
-namespace NeoSharp.Communications.PeerFactory
+namespace NeoSharp.Communications.Peers
 {
     public class PeerFactory : IPeerFactory
     {
