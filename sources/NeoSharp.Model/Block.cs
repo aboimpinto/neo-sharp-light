@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -8,55 +10,58 @@ namespace NeoSharp.Model
     public class Block
     {
         [JsonProperty("hash")]
-        public string Hash;
+        public string Hash { get; set; }
 
         [JsonProperty("size")]
-        public int Size;
+        public int Size { get; set; }
 
         [JsonProperty("version")]
-        public byte Version;
+        public byte Version { get; set; }
 
         [JsonProperty("previousblockhash")]
-        public string PreviousBlockHash;
+        public string PreviousBlockHash { get; set; }
 
         [JsonProperty("merkleroot")]
-        public string MerkleRoot;
+        public string MerkleRoot { get; set; }
 
         [JsonProperty("time")]
-        public int Timestamp;
+        public int Timestamp { get; set; }
 
         [JsonProperty("index")]
-        public int Index;
+        public int Index { get; set; }
 
         [JsonProperty("nonce")]
-        public string ConsensusData;
+        public string ConsensusData { get; set; }
 
         [JsonProperty("nextconsensus")]
-        public string NextConsensus;
+        public string NextConsensus { get; set; }
 
         [JsonProperty("nextblockhash")]
-        public string NextBlockHash;
-
-        [JsonProperty("tx")]
-        public Transaction[] Transactions = new Transaction[0];
-
-        [JsonProperty("script")]
-        public Witness Script;
+        public string NextBlockHash { get; set; }
 
         [JsonProperty("confirmations")]
-        public int Confirmations;
+        public int Confirmations { get; set; }
 
+        [JsonProperty("script")]
+        public virtual BlockWitness Script { get; set; }
+
+        [NotMapped]
+        [JsonProperty("tx")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
+
+        [NotMapped]
         [JsonProperty("txcount")]
-        public int TxCount => Transactions.Length;
+        public int TxCount => Transactions.Count;
 
+        [NotMapped]
         [JsonProperty("txhashes")]
-        public string[] TxHashes
+        public IEnumerable<string> TxHashes
         {
             get
             {
                 return Transactions != null ? 
-                    Transactions.Select(h => h.BlockHash).ToArray() : 
-                    new string[0];
+                    Transactions.Select(h => h.BlockHash).ToList() : 
+                    new List<string>();
             }
         }
     }

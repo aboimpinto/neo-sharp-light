@@ -4,7 +4,6 @@ using NeoSharp.Communications.Peers;
 using NeoSharp.Communications.Protocols;
 using NeoSharp.Core;
 using NeoSharp.DependencyInjection;
-using NeoSharp.Serialization.CustomSerializers;
 
 namespace NeoSharp.Communications
 {

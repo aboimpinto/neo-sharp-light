@@ -7,4 +7,14 @@
   <PropertyGroup>
 		<CodeAnalysisRuleSet>$(SolutionDir)ca.ruleset</CodeAnalysisRuleSet>
 	</PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\..\..\..\Users\esqueleto\.nuget\packages\microsoft.entityframeworkcore\2.1.2\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

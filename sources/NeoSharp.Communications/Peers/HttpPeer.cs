@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 using NeoSharp.Logging;
 using NeoSharp.Model;
 using Newtonsoft.Json;
@@ -12,14 +13,18 @@ namespace NeoSharp.Communications.Peers
         private string rpcUrl;
         private int peerBlockCount;
         private int lastBlockExtracted;
+        private readonly DbContext dbContext;
         private readonly ILogger<HttpPeer> logger;
 
         public bool Connected { get; }
 
         public bool IsReady { get; }
 
-        public HttpPeer(ILogger<HttpPeer> logger)
+        public HttpPeer(
+            DbContext dbContext,
+            ILogger<HttpPeer> logger)
         {
+            this.dbContext = dbContext;
             this.logger = logger;
 
             this.lastBlockExtracted = 0;
@@ -36,11 +41,17 @@ namespace NeoSharp.Communications.Peers
                 return;
             }
 
+            this.lastBlockExtracted = 4130;
+
             for (var i = this.lastBlockExtracted; i < this.peerBlockCount - 1; i++)
             {
                 var block = this.RetrieveBlock(i);
 
                 this.logger.LogInformation($"Block {block.Hash} with index {block.Index} retrieved.");
+
+                this.dbContext.Add(block);
+                this.dbContext.SaveChanges();
+
                 this.lastBlockExtracted++;
             }
         }
@@ -65,7 +76,64 @@ namespace NeoSharp.Communications.Peers
         private Block RetrieveBlock(int blockIndex)
         {
             var rawBlock = this.GetRawBlock(blockIndex);
-            return JsonConvert.DeserializeObject<Block>(rawBlock);
+            var block = JsonConvert.DeserializeObject<Block>(rawBlock);
+
+            var transactionOutputId = 1;
+
+            foreach (var blockTransaction in block.Transactions)
+            {
+                blockTransaction.BlockHash = block.Hash;
+
+                if (blockTransaction.Asset != null)
+                {
+                    blockTransaction.Asset.TransactionHash = blockTransaction.Hash;
+                    blockTransaction.Asset.Transaction = blockTransaction;
+                }
+
+                foreach (var transactionAttribute in blockTransaction.Attributes)
+                {
+                    transactionAttribute.Transaction = blockTransaction;
+                    transactionAttribute.TransactionHash = blockTransaction.Hash;
+                }
+
+                foreach (var blockTransactionOutput in blockTransaction.Outputs)
+                {
+                    blockTransactionOutput.Transaction = blockTransaction;
+                    blockTransactionOutput.TransactionHash = blockTransaction.Hash;
+                    blockTransactionOutput.Id = transactionOutputId;
+
+                    transactionOutputId++;
+                }
+
+                foreach (var transactionInput in blockTransaction.Inputs)
+                {
+                    transactionInput.Transaction = blockTransaction;
+                    transactionInput.TransactionHash = blockTransaction.Hash;
+                }
+
+                if (blockTransaction.Claims != null)
+                {
+                    foreach (var transactionClaim in blockTransaction.Claims)
+                    {
+                        transactionClaim.Transaction = blockTransaction;
+                        transactionClaim.TransactionHash = blockTransaction.Hash;
+                    }
+                }
+
+                foreach (var transactionWitness in blockTransaction.Scripts)
+                {
+                    transactionWitness.Transaction = blockTransaction;
+                    transactionWitness.Hash = blockTransaction.Hash;
+                }
+
+                if (blockTransaction.Contract != null)
+                {
+                    blockTransaction.Contract.Transaction = blockTransaction;
+                    blockTransaction.Contract.Hash = blockTransaction.Hash;
+                }
+            }
+
+            return block;
         }
 
         private string GetRawBlock(int blockIndex)

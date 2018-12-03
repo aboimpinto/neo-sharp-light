@@ -6,16 +6,16 @@ namespace NeoSharp.Model
 {
     [Serializable]
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum TransactionType : byte
+    public enum TransactionType : int
     {
-        MinerTransaction = 0x00,
-        IssueTransaction = 0x01,
-        ClaimTransaction = 0x02,
-        EnrollmentTransaction = 0x20,
-        RegisterTransaction = 0x40,
-        ContractTransaction = 0x80,
-        StateTransaction = 0x90,
-        PublishTransaction = 0xd0,
-        InvocationTransaction = 0xd1
+        MinerTransaction = 0,
+        IssueTransaction = 1,
+        ClaimTransaction = 2,
+        EnrollmentTransaction = 3,
+        RegisterTransaction = 4,
+        ContractTransaction = 5,
+        StateTransaction = 6,
+        PublishTransaction = 7,
+        InvocationTransaction = 8
     }
 }

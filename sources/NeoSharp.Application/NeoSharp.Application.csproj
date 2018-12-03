@@ -25,6 +25,8 @@
     <None Include="..\ca.ruleset" Link="ca.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NeoSharp.DbAccess.MySQL\NeoSharp.DbAccess.MySQL.csproj" />
+    <ProjectReference Include="..\NeoSharp.DbAccess\NeoSharp.DbAccess.csproj" />
     <ProjectReference Include="..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
     <ProjectReference Include="..\NeoSharp.Logging.NLog\NeoSharp.Logging.NLog.csproj" />
     <ProjectReference Include="..\NeoSharp.Core\NeoSharp.Core.csproj" />

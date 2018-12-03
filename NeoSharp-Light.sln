@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Cryptography.Bounc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Serialization", "sources\NeoSharp.Serialization\NeoSharp.Serialization.csproj", "{11CA7320-5025-444E-8DBA-6547163C9A2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.Model", "sources\NeoSharp.Model\NeoSharp.Model.csproj", "{58C14B55-C1DC-4BB2-8F43-6F940751EDDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoSharp.Model", "sources\NeoSharp.Model\NeoSharp.Model.csproj", "{58C14B55-C1DC-4BB2-8F43-6F940751EDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoSharp.DbAccess.MySQL", "sources\NeoSharp.DbAccess.MySQL\NeoSharp.DbAccess.MySQL.csproj", "{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,6 +257,18 @@ Global
 		{58C14B55-C1DC-4BB2-8F43-6F940751EDDD}.Release|x64.Build.0 = Release|Any CPU
 		{58C14B55-C1DC-4BB2-8F43-6F940751EDDD}.Release|x86.ActiveCfg = Release|Any CPU
 		{58C14B55-C1DC-4BB2-8F43-6F940751EDDD}.Release|x86.Build.0 = Release|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Release|x64.Build.0 = Release|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -277,6 +291,7 @@ Global
 		{E8D6D650-0B61-4743-80CB-8D60764FE8D8} = {CBED77AB-2B21-4DED-88B7-7D07D8C761A2}
 		{11CA7320-5025-444E-8DBA-6547163C9A2C} = {C240E434-6300-40CE-923D-D59A7731588A}
 		{58C14B55-C1DC-4BB2-8F43-6F940751EDDD} = {C240E434-6300-40CE-923D-D59A7731588A}
+		{A8D1801D-90DC-433E-A0B7-4B8D28DF442F} = {C240E434-6300-40CE-923D-D59A7731588A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {248E7144-00B0-4E73-B95F-22C95B471196}

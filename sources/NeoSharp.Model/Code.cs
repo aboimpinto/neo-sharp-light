@@ -7,15 +7,17 @@ namespace NeoSharp.Model
     public class Code
     {
         [JsonProperty("hash")]
-        public string Hash;
+        public string Hash { get; set; }
 
         [JsonProperty("script")]
-        public string Script;
+        public string Script { get; set; }
 
         [JsonProperty("returntype")]
-        public string ReturnType;
+        public string ReturnType { get; set; }
 
         [JsonProperty("parameters")]
         public string[] Parameters = new string[0];
+
+        public virtual Contract Contract { get; set; }
     }
 }

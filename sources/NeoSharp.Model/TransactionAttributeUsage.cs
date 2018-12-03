@@ -9,7 +9,7 @@ namespace NeoSharp.Model
     public enum TransactionAttributeUsage : byte
     {
         /// <summary>
-        /// Hash value of external contract
+        /// TransactionHash value of external contract
         /// </summary>
         ContractHash = 0x00,
         /// <summary>

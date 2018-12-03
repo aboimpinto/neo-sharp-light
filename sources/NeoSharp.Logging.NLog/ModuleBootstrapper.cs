@@ -3,7 +3,7 @@ using NeoSharp.DependencyInjection;
 
 namespace NeoSharp.Logging.NLog
 {
-    public class ModuleBootstraper : IModuleBootstrapper
+    public class ModuleBootstrapper : IModuleBootstrapper
     {
         public void Start(IContainer container)
         {

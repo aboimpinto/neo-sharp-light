@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace NeoSharp.Model
@@ -6,11 +7,15 @@ namespace NeoSharp.Model
     [Serializable]
     public class Contract
     {
-        public string Hash => Code.Hash;
+        public string Hash
+        {
+            get => Code.Hash;
+            set => Code.Hash = value;
+        }
 
         public string Script => Code.Script;
 
-        public string[] Parameters => Code.Parameters;
+        public IEnumerable<string> Parameters => Code.Parameters;
 
         public string ReturnType => Code.ReturnType;
 
@@ -18,21 +23,23 @@ namespace NeoSharp.Model
         public Code Code { get; set; }
 
         [JsonProperty("needstorage")]
-        public string NeedStorage;
+        public string NeedStorage { get; set; }
 
         [JsonProperty("name")]
-        public string Name;
+        public string Name { get; set; }
 
         [JsonProperty("version")]
-        public string Version;
+        public string Version { get; set; }
 
         [JsonProperty("author")]
-        public string Author;
+        public string Author { get; set; }
 
         [JsonProperty("email")]
-        public string Email;
+        public string Email { get; set; }
 
         [JsonProperty("description")]
-        public string Description;
+        public string Description { get; set; }
+
+        public virtual Transaction Transaction { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace NeoSharp.Model
@@ -8,70 +8,72 @@ namespace NeoSharp.Model
     public class Transaction
     {
         [JsonProperty("txid")]
-        public string Hash;
+        public string Hash { get; set; }
 
         [JsonProperty("size")]
-        public int Size;
+        public int Size { get; set; }
 
         [JsonProperty("type")]
-        public TransactionType Type;
+        public TransactionType Type { get; set; }
 
         [JsonProperty("version")]
-        public byte Version;
+        public byte Version { get; set; }
 
         [JsonProperty("sys_fee")]
-        public long SystemFee;
+        public long SystemFee { get; set; }
 
         [JsonProperty("net_fee")]
-        public long NetworkFee;
+        public long NetworkFee { get; set; }
 
         [JsonProperty("blockhash")]
-        public string BlockHash;
+        public string BlockHash { get; set; }
 
         [JsonProperty("blockindex")]
-        public int BlockIndex;
+        public int BlockIndex { get; set; }
 
         [JsonProperty("timestamp")]
-        public int Timestamp;
-
-        [JsonProperty("attributes")]
-        public TransactionAttribute[] Attributes = new TransactionAttribute[0];
-
-        [JsonProperty("vin")]
-        public CoinReference[] Inputs = new CoinReference[0];
-
-        [JsonProperty("vout")]
-        public TransactionOutput[] Outputs = new TransactionOutput[0];
-
-        [JsonProperty("scripts")]
-        public Witness[] Scripts;
+        public int Timestamp { get; set; }
 
         //Enrollment
         [JsonProperty("pubkey")]
-        public string PublicKey;
+        public string PublicKey { get; set; }
 
         //Invocation
         [JsonProperty("script")]
-        public string Script;
+        public string Script { get; set; }
 
         //Invocation
         [JsonProperty("gas")]
-        public long Gas;
+        public long Gas { get; set; }
 
         //Miner
         [JsonProperty("nonce")]
-        public ulong Nonce;
-
-        //Claim
-        [JsonProperty("claims")]
-        public CoinReference[] Claims = new CoinReference[0];
+        public long Nonce { get; set; }
 
         //Publish
         [JsonProperty("contract")]
-        public Contract Contract;
+        public Contract Contract { get; set; }
 
         //Register
         [JsonProperty("asset")]
-        public Asset Asset;
+        public Asset Asset { get; set; }
+
+        [JsonProperty("vout")]
+        public virtual IEnumerable<TransactionOutput> Outputs { get; set; }
+
+        [JsonProperty("attributes")]
+        public virtual IEnumerable<TransactionAttribute> Attributes { get; set; }
+
+        [JsonProperty("vin")]
+        public virtual IEnumerable<CoinReference> Inputs { get; set; }
+
+        //Claim
+        [JsonProperty("claims")]
+        public virtual IEnumerable<CoinReference> Claims { get; set; }
+
+        [JsonProperty("scripts")]
+        public virtual IEnumerable<TransactionWitness> Scripts { get; set; }
+
+        public virtual Block Block { get; set; }
     }
 }
