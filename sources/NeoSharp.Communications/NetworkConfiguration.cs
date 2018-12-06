@@ -5,6 +5,10 @@ namespace NeoSharp.Communications
 {
     public class NetworkConfiguration
     {
+        public int ImportFrom { get; set; }
+
+        public int ImportTo { get; set; }
+
         /// <summary>
         /// Magic number
         /// </summary>

@@ -1,6 +1,4 @@
-using System;
 using System.Reflection;
-using NeoSharp.Communications.Extensions;
 using NeoSharp.Communications.Messages;
 using NeoSharp.Core;
 using NeoSharp.Core.Extensions;

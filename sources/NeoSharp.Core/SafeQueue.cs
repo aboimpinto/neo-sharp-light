@@ -11,6 +11,8 @@ namespace NeoSharp.Core
         private readonly ReaderWriterLockSlim readerWriteLockSlim = new ReaderWriterLockSlim();
         private readonly AutoResetEvent waitForQueueToChangeEvent = new AutoResetEvent(false);
 
+        public int Count => this.safeList.Count;
+
         public void Enqueue(T item)
         {
             this.readerWriteLockSlim.EnterWriteLock();

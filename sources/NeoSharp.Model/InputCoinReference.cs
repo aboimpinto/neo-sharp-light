@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace NeoSharp.Model
 {
     [Serializable]
-    public class CoinReference
+    public class InputCoinReference
     {
         private string id;
 
@@ -17,17 +17,12 @@ namespace NeoSharp.Model
         [JsonProperty("id")]
         public string Id
         {
-            get { return this.id;}
+            get { return $"{PrevHash}_{PrevIndex}"; }
             set { this.id = value; }
         }
 
         public string TransactionHash { get; set; }
 
         public virtual Transaction Transaction { get; set; }
-
-        public CoinReference()
-        {
-            this.id = $"{PrevHash}_{PrevIndex}";
-        }
     }
 }

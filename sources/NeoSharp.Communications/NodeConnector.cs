@@ -12,7 +12,7 @@ namespace NeoSharp.Communications
         private readonly IPeerFactory peerFactory;
         private readonly ILogger<NodeConnector> logger;
         private bool isNodeRunning;
-        private IList<IPeer> connectedPeers;
+        private readonly IList<IPeer> connectedPeers;
 
         public NodeConnector(
             ICommunicationsContext communicationsContext,

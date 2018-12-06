@@ -65,11 +65,11 @@ namespace NeoSharp.Model
         public virtual IEnumerable<TransactionAttribute> Attributes { get; set; }
 
         [JsonProperty("vin")]
-        public virtual IEnumerable<CoinReference> Inputs { get; set; }
+        public virtual IEnumerable<InputCoinReference> Inputs { get; set; }
 
         //Claim
         [JsonProperty("claims")]
-        public virtual IEnumerable<CoinReference> Claims { get; set; }
+        public virtual IEnumerable<ClaimCoinReference> Claims { get; set; }
 
         [JsonProperty("scripts")]
         public virtual IEnumerable<TransactionWitness> Scripts { get; set; }
