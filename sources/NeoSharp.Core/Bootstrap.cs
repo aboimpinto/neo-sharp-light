@@ -1,23 +1,20 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
-using NeoSharp.Communications;
 using NeoSharp.Core;
 using NeoSharp.Core.Extensions;
 using NeoSharp.DependencyInjection;
 using NeoSharp.DependencyInjection.Unity;
 
-namespace NeoSharp.Application
+namespace NeoSharpLight.Core
 {
-        public class Bootstrap : IDisposable
+    public class Bootstrap
     {
         private readonly IConfigurationRoot neoSharpConfiguration;
         private readonly ModuleConfiguration moduleConfiguration;
         private readonly IContainer dependencyInjectionContainer;
-
-        private bool disposed = false;
 
         public Bootstrap()
         {
@@ -31,9 +28,6 @@ namespace NeoSharp.Application
             this.dependencyInjectionContainer = new Container();
         }
 
-        /// <summary>
-        /// Start bootstrapping.
-        /// </summary>
         public void Start()
         {
             this.LoadModules();
@@ -41,50 +35,30 @@ namespace NeoSharp.Application
             var nepSharpContext = this.dependencyInjectionContainer.Resolve<INeoSharpContext>();
             nepSharpContext.ApplicationConfiguration = this.neoSharpConfiguration;
 
-            var nodeConnector = this.dependencyInjectionContainer.Resolve<INodeConnector>();
-            nodeConnector.Connect();
+            this.LoadApplicationEntryPoint();
         }
 
-        public void Dispose()
+        private void LoadApplicationEntryPoint()
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+            var applicationEntryPointConfiguration = this.neoSharpConfiguration.LoadConfiguration<ApplicationEntryPointConfiguration>();
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (this.disposed)
+            var assembly = this.LoadModuleIfNecessary(applicationEntryPointConfiguration.EntryPoint);
+
+            var applicationEntryImplementation = assembly.DefinedTypes
+                .SingleOrDefault(x => x.ImplementedInterfaces.Contains(typeof(IApplicationEntryPoint)));
+
+            if (applicationEntryImplementation != null)
             {
-                return;
+                var applicationEntryPointInstance = assembly.CreateInstance(applicationEntryImplementation.FullName) as IApplicationEntryPoint;
+                applicationEntryPointInstance.StartApplication(this.dependencyInjectionContainer);
             }
-
-            if (disposing)
-            {
-            }
-
-            this.disposed = true;
         }
 
         private void LoadModules()
         {
             foreach (var module in this.moduleConfiguration.Modules)
             {
-                var isLoaded = AppDomain.CurrentDomain
-                    .GetAssemblies()
-                    .Any(x => x.GetName().Name == module);
-
-                Assembly assembly = null;
-                if (isLoaded)
-                {
-                    assembly = AppDomain.CurrentDomain
-                        .GetAssemblies()
-                        .Single(x => x.GetName().Name == module);
-                }
-                else
-                {
-                    var moduleDll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{module}.dll");
-                    assembly = Assembly.LoadFile(moduleDll);
-                }
+                var assembly = this.LoadModuleIfNecessary(module);
 
                 var moduleBootstrappers = assembly.DefinedTypes
                     .Where(x => x.ImplementedInterfaces.Contains(typeof(IModuleBootstrapper)));
@@ -96,6 +70,28 @@ namespace NeoSharp.Application
                     moduleBootstrapInstance.Start(this.dependencyInjectionContainer);
                 }
             }
+        }
+
+        private Assembly LoadModuleIfNecessary(string entryPointModule)
+        {
+            var isLoaded = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .Any(x => x.GetName().Name == entryPointModule);
+
+            Assembly assembly = null;
+            if (isLoaded)
+            {
+                assembly = AppDomain.CurrentDomain
+                    .GetAssemblies()
+                    .Single(x => x.GetName().Name == entryPointModule);
+            }
+            else
+            {
+                var moduleDll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{entryPointModule}.dll");
+                assembly = Assembly.LoadFile(moduleDll);
+            }
+
+            return assembly;
         }
     }
 }

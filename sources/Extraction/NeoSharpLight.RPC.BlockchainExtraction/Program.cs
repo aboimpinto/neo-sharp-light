@@ -1,4 +1,5 @@
 ﻿using System;
+using NeoSharpLight.Core;
 
 namespace NeoSharpLight.RPC.BlockchainExtraction
 {
@@ -6,7 +7,10 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new Bootstrap()
+                .Start();
+
+            Console.ReadLine();
         }
     }
 }
