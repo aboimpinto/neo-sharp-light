@@ -10,7 +10,8 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
             new Bootstrap()
                 .Start();
 
-            Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("End processing new blocks.");
         }
     }
 }

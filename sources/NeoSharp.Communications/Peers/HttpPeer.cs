@@ -33,7 +33,6 @@ namespace NeoSharp.Communications.Peers
 
         public HttpPeer(
             ICommunicationsContext communicationsContext,
-            BlockchainDbAccess blockchainDbAccess,
             DbContext dbContext,
             ILogger<HttpPeer> logger)
         {

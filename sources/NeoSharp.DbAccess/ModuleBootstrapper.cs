@@ -8,7 +8,7 @@ namespace NeoSharp.DbAccess
     {
         public void Start(IContainer container)
         {
-            container.RegisterSingleton<IBlockchainDbAccess, BlockchainDbAccess>();
+            container.Register<IBlockchainDbAccess, BlockchainDbAccess>();
         }
 
         public void Stop()
