@@ -5,5 +5,7 @@
         int GetBlockCount();
 
         dynamic GetRawBlock(int index);
+
+        void OverridePeerAddress(string peerAddress);
     }
 }

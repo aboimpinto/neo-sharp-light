@@ -41,6 +41,11 @@ namespace NeoSharpLight.RPC.NodeManager.RpcNodeAccess
             return callResult;
         }
 
+        public void OverridePeerAddress(string peerAddress)
+        {
+            this.rpcPeerUrl = peerAddress;
+        }
+
         private dynamic RpcCall(JsonRpcRequest request)
         {
             using (var client = new WebClient { Encoding = System.Text.Encoding.UTF8 })

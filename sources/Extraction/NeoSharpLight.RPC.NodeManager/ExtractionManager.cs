@@ -32,6 +32,11 @@ namespace NeoSharpLight.RPC.NodeManager
         {
             var finalConfiguration = this.GetFinalConfiguration(args);
 
+            if (!string.IsNullOrEmpty(finalConfiguration.PeerAddress))
+            {
+                this.nodeAccess.OverridePeerAddress(finalConfiguration.PeerAddress);
+            }
+
             var remoteBlockCount = this.nodeAccess.GetBlockCount();
             var localBlockCount = this.dbAccess.GetBlockCount();
 
@@ -40,6 +45,8 @@ namespace NeoSharpLight.RPC.NodeManager
                 localBlockCount = finalConfiguration.ImportFrom;
                 remoteBlockCount = finalConfiguration.ImportTo;
             }
+
+            this.logger.LogTrace($"Obtaining blocks from {localBlockCount} to {remoteBlockCount} from server {finalConfiguration.PeerAddress}");
 
             if (localBlockCount >= remoteBlockCount)
             {
