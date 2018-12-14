@@ -1,25 +1,22 @@
-﻿using NeoSharp.Core;
-using NeoSharp.Core.Extensions;
-using StackExchange.Redis;
+﻿using StackExchange.Redis;
 
 namespace NeoSharpLight.RPC.NodeManager.RedisDumpDb
 {
     public class DbAccess : IDbAccess
     {
-        private readonly ExtractionConfiguration extractionConfiguration;
-        private IDatabase redisDb;
+        private const string BlockCountKey = "blockCount";
 
-        public DbAccess(INeoSharpContext neoSharpContext)
+        private readonly IDatabase redisDb;
+
+        public DbAccess()
         {
-            this.extractionConfiguration = neoSharpContext.ApplicationConfiguration.LoadConfiguration<ExtractionConfiguration>();
-
             var redisConnectionMultiplexer = ConnectionMultiplexer.Connect("localhost");
             this.redisDb = redisConnectionMultiplexer.GetDatabase(0);
         }
 
         public int GetBlockCount()
         {
-            int.TryParse(this.redisDb.StringGet("blockCount"), out int blockCount);
+            int.TryParse(this.redisDb.StringGet(BlockCountKey), out var blockCount);
 
             return blockCount;
         }
@@ -31,7 +28,13 @@ namespace NeoSharpLight.RPC.NodeManager.RedisDumpDb
 
         public void SaveBlockCount(int index)
         {
-            this.redisDb.StringSet("blockCount", index.ToString());
+            var currentBlockCount = this.GetBlockCount();
+
+            // Only save if the index is higher the persisted blockCount
+            if (index > currentBlockCount)
+            {
+                this.redisDb.StringSet(BlockCountKey, index.ToString());
+            }
         }
     }
 }

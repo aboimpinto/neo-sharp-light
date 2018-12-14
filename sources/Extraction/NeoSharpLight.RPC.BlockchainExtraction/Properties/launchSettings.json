@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NeoSharpLight.RPC.BlockchainExtraction": {
+      "commandName": "Project",
+      "commandLineArgs": "10000 20000 http://seed6.ngd.network:10332/"
+    }
+  }
+}

@@ -21,10 +21,10 @@ namespace NeoSharpLight.RPC.NodeManager
             throw new NotImplementedException();
         }
 
-        public void StartApplication(IContainer container)
+        public void StartApplication(IContainer container, string[] args)
         {
             var extractionManager = container.Resolve<IExtractionManager>();
-            extractionManager.StartExtraction();
+            extractionManager.StartExtraction(args);
         }
     }
 }

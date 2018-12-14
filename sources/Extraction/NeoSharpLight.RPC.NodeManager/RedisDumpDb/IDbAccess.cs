@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NeoSharpLight.RPC.NodeManager.RedisDumpDb
+﻿namespace NeoSharpLight.RPC.NodeManager.RedisDumpDb
 {
     public interface IDbAccess
     {

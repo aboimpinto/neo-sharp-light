@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NeoSharp.Core;
 using NeoSharp.Core.Extensions;
 using NeoSharp.Logging;
@@ -27,15 +28,17 @@ namespace NeoSharpLight.RPC.NodeManager
             this.extractionConfiguration = neoSharpContext.ApplicationConfiguration.LoadConfiguration<ExtractionConfiguration>();
         }
 
-        public void StartExtraction()
+        public void StartExtraction(string[] args)
         {
+            var finalConfiguration = this.GetFinalConfiguration(args);
+
             var remoteBlockCount = this.nodeAccess.GetBlockCount();
             var localBlockCount = this.dbAccess.GetBlockCount();
 
-            if (this.extractionConfiguration.ImportFrom > 0 || this.extractionConfiguration.ImportTo > 0)
+            if (finalConfiguration.ImportFrom > 0 || finalConfiguration.ImportTo > 0)
             {
-                localBlockCount = this.extractionConfiguration.ImportFrom;
-                remoteBlockCount = this.extractionConfiguration.ImportTo;
+                localBlockCount = finalConfiguration.ImportFrom;
+                remoteBlockCount = finalConfiguration.ImportTo;
             }
 
             if (localBlockCount >= remoteBlockCount)
@@ -60,6 +63,40 @@ namespace NeoSharpLight.RPC.NodeManager
                 this.logger.LogInformation($"Blocks persisted {i}: {processingTime} with average {processingTime / 100}s");
                 startTimestamp = DateTime.Now;
             }
+        }
+
+        private FinalNetworkConfiguration GetFinalConfiguration(IReadOnlyList<string> args)
+        {
+            if (args.Count == 0)
+            {
+                return new FinalNetworkConfiguration
+                {
+                    ImportFrom = this.extractionConfiguration.ImportFrom,
+                    ImportTo = this.extractionConfiguration.ImportTo,
+                    PeerAddress = this.extractionConfiguration.RpcPeer
+                };
+            }
+
+            if (args.Count == 3)
+            {
+                return new FinalNetworkConfiguration
+                {
+                    ImportFrom = int.Parse(args[0]),
+                    ImportTo = int.Parse(args[1]),
+                    PeerAddress = args[2]
+                };
+            }
+
+            throw new InvalidOperationException("Invalid parameters");
+        }
+
+        public class FinalNetworkConfiguration
+        {
+            public int ImportFrom { get; set; }
+
+            public int ImportTo { get; set; }
+
+            public string PeerAddress { get; set; }
         }
     }
 }

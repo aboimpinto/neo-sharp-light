@@ -3,12 +3,12 @@ using NeoSharpLight.Core;
 
 namespace NeoSharpLight.RPC.BlockchainExtraction
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             new Bootstrap()
-                .Start();
+                .Start(args);
 
             Console.WriteLine();
             Console.WriteLine("End processing new blocks.");

@@ -28,17 +28,17 @@ namespace NeoSharpLight.Core
             this.dependencyInjectionContainer = new Container();
         }
 
-        public void Start()
+        public void Start(string[] args)
         {
             this.LoadModules();
 
             var nepSharpContext = this.dependencyInjectionContainer.Resolve<INeoSharpContext>();
             nepSharpContext.ApplicationConfiguration = this.neoSharpConfiguration;
 
-            this.LoadApplicationEntryPoint();
+            this.LoadApplicationEntryPoint(args);
         }
 
-        private void LoadApplicationEntryPoint()
+        private void LoadApplicationEntryPoint(string[] args)
         {
             var applicationEntryPointConfiguration = this.neoSharpConfiguration.LoadConfiguration<ApplicationEntryPointConfiguration>();
 
@@ -47,11 +47,10 @@ namespace NeoSharpLight.Core
             var applicationEntryImplementation = assembly.DefinedTypes
                 .SingleOrDefault(x => x.ImplementedInterfaces.Contains(typeof(IApplicationEntryPoint)));
 
-            if (applicationEntryImplementation != null)
-            {
-                var applicationEntryPointInstance = assembly.CreateInstance(applicationEntryImplementation.FullName) as IApplicationEntryPoint;
-                applicationEntryPointInstance.StartApplication(this.dependencyInjectionContainer);
-            }
+            if (applicationEntryImplementation == null) return;
+
+            var applicationEntryPointInstance = assembly.CreateInstance(applicationEntryImplementation.FullName) as IApplicationEntryPoint;
+            applicationEntryPointInstance.StartApplication(this.dependencyInjectionContainer, args);
         }
 
         private void LoadModules()
