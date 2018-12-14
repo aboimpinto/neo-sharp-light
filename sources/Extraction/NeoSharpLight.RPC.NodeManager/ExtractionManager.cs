@@ -9,10 +9,10 @@ namespace NeoSharpLight.RPC.NodeManager
 {
     public class ExtractionManager : IExtractionManager
     {
-        private readonly INeoSharpContext neoSharpContext;
         private readonly INodeAccess nodeAccess;
         private readonly IDbAccess dbAccess;
         private readonly ILogger<ExtractionManager> logger;
+        private readonly ExtractionConfiguration extractionConfiguration;
 
         public ExtractionManager(
             INeoSharpContext neoSharpContext,
@@ -20,19 +20,23 @@ namespace NeoSharpLight.RPC.NodeManager
             IDbAccess dbAccess, 
             ILogger<ExtractionManager> logger)
         {
-            this.neoSharpContext = neoSharpContext;
             this.nodeAccess = nodeAccess;
             this.dbAccess = dbAccess;
             this.logger = logger;
 
-            var extractionConfiguraction = neoSharpContext.ApplicationConfiguration.LoadConfiguration<ExtractionConfiguration>();
+            this.extractionConfiguration = neoSharpContext.ApplicationConfiguration.LoadConfiguration<ExtractionConfiguration>();
         }
 
         public void StartExtraction()
         {
             var remoteBlockCount = this.nodeAccess.GetBlockCount();
-
             var localBlockCount = this.dbAccess.GetBlockCount();
+
+            if (this.extractionConfiguration.ImportFrom > 0 || this.extractionConfiguration.ImportTo > 0)
+            {
+                localBlockCount = this.extractionConfiguration.ImportFrom;
+                remoteBlockCount = this.extractionConfiguration.ImportTo;
+            }
 
             if (localBlockCount >= remoteBlockCount)
             {
@@ -40,23 +44,21 @@ namespace NeoSharpLight.RPC.NodeManager
             }
 
             var startTimestamp = DateTime.Now;
-            var endTimestamp = DateTime.Now;
 
-            for (int i = localBlockCount; i < remoteBlockCount; i++)
+            for (var i = localBlockCount; i < remoteBlockCount; i++)
             {
                 var rawBlock = this.nodeAccess.GetRawBlock(i);
 
                 this.dbAccess.SaveBlock(i, rawBlock.ToString());
                 this.dbAccess.SaveBlockCount(i);
 
-                if (i > 0 && i % 100 == 0)
-                {
-                    endTimestamp = DateTime.Now;
-                    var processingTime = (endTimestamp - startTimestamp).TotalSeconds;
+                if (i <= 0 || i % 100 != 0) continue;
 
-                    this.logger.LogInformation($"Blocks persisted {i}: {processingTime} with average {processingTime / 100}s");
-                    startTimestamp = DateTime.Now;
-                }
+                var endTimestamp = DateTime.Now;
+                var processingTime = (endTimestamp - startTimestamp).TotalSeconds;
+
+                this.logger.LogInformation($"Blocks persisted {i}: {processingTime} with average {processingTime / 100}s");
+                startTimestamp = DateTime.Now;
             }
         }
     }
