@@ -1,4 +1,6 @@
-﻿using StackExchange.Redis;
+﻿using NeoSharp.Core;
+using NeoSharp.Core.Extensions;
+using StackExchange.Redis;
 
 namespace NeoSharpLight.RPC.NodeManager.RedisDumpDb
 {
@@ -8,10 +10,13 @@ namespace NeoSharpLight.RPC.NodeManager.RedisDumpDb
 
         private readonly IDatabase redisDb;
 
-        public DbAccess()
+        public DbAccess(INeoSharpContext neoSharpContext)
         {
-            var redisConnectionMultiplexer = ConnectionMultiplexer.Connect("localhost");
-            this.redisDb = redisConnectionMultiplexer.GetDatabase(0);
+            var redisDbConfiguration = neoSharpContext.ApplicationConfiguration
+                .LoadConfiguration<RedisDbConfiguration>();
+
+            var redisConnectionMultiplexer = ConnectionMultiplexer.Connect(redisDbConfiguration.Server);
+            this.redisDb = redisConnectionMultiplexer.GetDatabase(redisDbConfiguration.Instance);
         }
 
         public int GetBlockCount()
