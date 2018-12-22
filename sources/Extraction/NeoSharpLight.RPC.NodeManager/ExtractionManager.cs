@@ -72,9 +72,9 @@ namespace NeoSharpLight.RPC.NodeManager
             }
         }
 
-        private FinalNetworkConfiguration GetFinalConfiguration(IReadOnlyList<string> args)
+        private FinalNetworkConfiguration GetFinalConfiguration(string[] args)
         {
-            if (args.Count == 0)
+            if (args.Length == 0)
             {
                 return new FinalNetworkConfiguration
                 {
@@ -84,7 +84,7 @@ namespace NeoSharpLight.RPC.NodeManager
                 };
             }
 
-            if (args.Count == 3)
+            if (args.Length == 3)
             {
                 this.logger.LogTrace($"Arg[0]: {args[0]}");
                 this.logger.LogTrace($"Arg[1]: {args[1]}");
