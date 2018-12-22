@@ -1,0 +1,230 @@
+version: "3.4"
+services:
+
+  extract-1:
+    container_name: extract-1
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=0
+      - END_BLOCK=10000
+      - SEED=http://node2.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-2:
+    container_name: extract-2
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=10001
+      - END_BLOCK=20000
+      - SEED=http://node2.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-3:
+    container_name: extract-3
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=20001
+      - END_BLOCK=30000
+      - SEED=http://node2.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-4:
+    container_name: extract-4
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=30001
+      - END_BLOCK=40000
+      - SEED=http://node2.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-5:
+    container_name: extract-5
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=40001
+      - END_BLOCK=50000
+      - SEED=http://node1.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-6:
+    container_name: extract-6
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=50001
+      - END_BLOCK=60000
+      - SEED=http://node1.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-7:
+    container_name: extract-7
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=60001
+      - END_BLOCK=70000
+      - SEED=http://node1.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-8:
+    container_name: extract-8
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=70001
+      - END_BLOCK=80000
+      - SEED=http://node1.sgp1.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-9:
+    container_name: extract-9
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=80001
+      - END_BLOCK=90000
+      - SEED=http://seed6.ngd.network:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-10:
+    container_name: extract-10
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=90001
+      - END_BLOCK=100000
+      - SEED=http://seed6.ngd.network:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-11:
+    container_name: extract-11
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=100001
+      - END_BLOCK=110000
+      - SEED=http://seed6.ngd.network:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-12:
+    container_name: extract-12
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=110001
+      - END_BLOCK=120000
+      - SEED=http://seed6.ngd.network:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-13:
+    container_name: extract-13
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=120001
+      - END_BLOCK=130000
+      - SEED=http://seed6.ngd.network:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-14:
+    container_name: extract-14
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=130001
+      - END_BLOCK=140000
+      - SEED=https://seed8.cityofzion.io:443
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-15:
+    container_name: extract-15
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=140001
+      - END_BLOCK=150000
+      - SEED=https://seed8.cityofzion.io:443
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-16:
+    container_name: extract-16
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=150001
+      - END_BLOCK=160000
+      - SEED=https://seed8.cityofzion.io:443
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-17:
+    container_name: extract-17
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=160001
+      - END_BLOCK=170000
+      - SEED=https://seed8.cityofzion.io:443
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-18:
+    container_name: extract-18
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=170001
+      - END_BLOCK=180000
+      - SEED=http://node2.ams2.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-19:
+    container_name: extract-19
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=180001
+      - END_BLOCK=190000
+      - SEED=http://node2.ams2.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+  extract-20:
+    container_name: extract-20
+    image: neo-sharp-extract:latest
+    environment:
+      - START_BLOCK=190001
+      - END_BLOCK=200000
+      - SEED=http://node2.ams2.bridgeprotocol.io:10332
+    network_mode: host
+    depends_on:
+      - redis
+
+## database
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - "./data:/data"
