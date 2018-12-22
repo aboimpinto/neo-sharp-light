@@ -86,6 +86,10 @@ namespace NeoSharpLight.RPC.NodeManager
 
             if (args.Count == 3)
             {
+                this.logger.LogTrace($"Arg[0]: {args[0]}");
+                this.logger.LogTrace($"Arg[1]: {args[1]}");
+                this.logger.LogTrace($"Arg[2]: {args[2]}");
+
                 return new FinalNetworkConfiguration
                 {
                     ImportFrom = int.Parse(args[0]),
