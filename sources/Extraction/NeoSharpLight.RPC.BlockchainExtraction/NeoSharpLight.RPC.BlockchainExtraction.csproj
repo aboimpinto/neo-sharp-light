@@ -12,15 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\NeoSharp.Core\NeoSharp.Core.csproj" />
-    <ProjectReference Include="..\..\NeoSharp.DependencyInjection.Unity\NeoSharp.DependencyInjection.Unity.csproj" />
-    <ProjectReference Include="..\..\NeoSharp.DependencyInjection\NeoSharp.DependencyInjection.csproj" />
-    <ProjectReference Include="..\..\NeoSharp.Logging.NLog\NeoSharp.Logging.NLog.csproj" />
-    <ProjectReference Include="..\..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
-    <ProjectReference Include="..\NeoSharpLight.RPC.NodeManager\NeoSharpLight.RPC.NodeManager.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

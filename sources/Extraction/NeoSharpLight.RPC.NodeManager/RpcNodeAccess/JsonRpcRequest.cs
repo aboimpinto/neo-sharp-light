@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿// using System;
+// using System.Collections.Generic;
+// using Newtonsoft.Json;
 
-namespace NeoSharpLight.RPC.NodeManager.RpcNodeAccess
-{
-    [Serializable]
-    public class JsonRpcRequest
-    {
-        [JsonProperty("jsonrpc")]
-        public string JsonRpcVersion = "2.0";
+// namespace NeoSharpLight.RPC.NodeManager.RpcNodeAccess
+// {
+//     [Serializable]
+//     public class JsonRpcRequest
+//     {
+//         [JsonProperty("jsonrpc")]
+//         public string JsonRpcVersion = "2.0";
 
-        [JsonProperty("method")]
-        public NeoRpcMethod Method = NeoRpcMethod.none;
+//         [JsonProperty("method")]
+//         public NeoRpcMethod Method = NeoRpcMethod.none;
 
-        [JsonProperty("params")]
-        public List<object> Parameters = new List<object>();
+//         [JsonProperty("params")]
+//         public List<object> Parameters = new List<object>();
 
-        [JsonProperty("id")]
-        public int Id = 1;
-    }
-}
+//         [JsonProperty("id")]
+//         public int Id = 1;
+//     }
+// }
