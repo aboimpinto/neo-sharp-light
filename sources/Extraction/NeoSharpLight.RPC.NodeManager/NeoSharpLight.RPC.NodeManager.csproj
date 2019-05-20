@@ -8,9 +8,4 @@
     <PackageReference Include="StackExchange.Redis" Version="2.0.519" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\NeoSharp.Core\NeoSharp.Core.csproj" />
-    <ProjectReference Include="..\..\NeoSharp.Logging\NeoSharp.Logging.csproj" />
-  </ItemGroup>
-
 </Project>
