@@ -1,5 +1,5 @@
 ﻿using System;
-using NeoSharpLight.Core;
+// using NeoSharpLight.Core;
 
 namespace NeoSharpLight.RPC.BlockchainExtraction
 {
@@ -7,8 +7,8 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
     {
         private static void Main(string[] args)
         {
-            new Bootstrap()
-                .Start(args);
+            // new Bootstrap()
+            //     .Start(args);
 
             Console.WriteLine();
             Console.WriteLine("End processing new blocks.");
