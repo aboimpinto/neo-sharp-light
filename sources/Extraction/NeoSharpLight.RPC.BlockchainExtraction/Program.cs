@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NeoSharpLight.RPC.BlockchainExtraction.Storage;
 // using NeoSharpLight.Core;
 
 namespace NeoSharpLight.RPC.BlockchainExtraction
@@ -44,10 +45,13 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
             });
 
             // Singletons instances
-            collection.AddSingleton<IAppContext, AppContext>();
+            collection
+                .AddSingleton<IAppContext, AppContext>()
+                .AddSingleton<IStorageAccess, StorageAccess>();
 
             // Scoped instances
-            collection.AddScoped<IBlockchainExtractor, BlockchainExtractor>();
+            collection
+                .AddScoped<IBlockchainExtractor, BlockchainExtractor>();
 
             _serviceProvider = collection.BuildServiceProvider();
         }
