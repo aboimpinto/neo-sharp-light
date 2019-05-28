@@ -1,6 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using Hanssens.Net;
 using Microsoft.Extensions.Logging;
 using NeoSharpLight.RPC.BlockchainExtraction.Storage;
 
@@ -25,6 +23,8 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
         public Task Start()
         {
             this._logger.LogDebug("Start extraction");
+
+            this._logger.LogDebug(this.appContext.ExtractionConfiguration.RpcPeer);
 
             this._logger.LogTrace($"Last block processed: {this._storageAccess.GetParameter("lastBlock")}");
             return Task.CompletedTask;
