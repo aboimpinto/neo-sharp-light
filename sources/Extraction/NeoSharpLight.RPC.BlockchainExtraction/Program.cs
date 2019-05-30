@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NeoSharpLight.RPC.BlockchainExtraction.RemoteProcedureCall;
 using NeoSharpLight.RPC.BlockchainExtraction.Storage;
 // using NeoSharpLight.Core;
 
@@ -47,7 +48,8 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
             // Singletons instances
             collection
                 .AddSingleton<IAppContext, AppContext>()
-                .AddSingleton<IStorageAccess, StorageAccess>();
+                .AddSingleton<IStorageAccess, StorageAccess>()
+                .AddSingleton<IRemoteProcedureCallManager, RemoteProcedureCallManager>();
 
             // Scoped instances
             collection
