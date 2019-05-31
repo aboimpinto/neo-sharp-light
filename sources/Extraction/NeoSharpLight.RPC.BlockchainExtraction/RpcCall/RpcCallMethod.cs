@@ -2,11 +2,11 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace NeoSharpLight.RPC.BlockchainExtraction.RemoteProcedureCall
+namespace NeoSharpLight.RPC.BlockchainExtraction.RpcCall
 {
     [Serializable]
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum RemoteProcedureCallMethod
+    public enum RpcCallMethod
     {
         none,
 

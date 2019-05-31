@@ -2,18 +2,18 @@ using System;
 using System.Net;
 using Newtonsoft.Json;
 
-namespace NeoSharpLight.RPC.BlockchainExtraction.RemoteProcedureCall
+namespace NeoSharpLight.RPC.BlockchainExtraction.RpcCall
 {
-    public class RemoteProcedureCallManager : IRemoteProcedureCallManager
+    public class RpcCallManager : IRpcCallManager
     {
         private readonly IAppContext context;
 
-        public RemoteProcedureCallManager(IAppContext context)
+        public RpcCallManager(IAppContext context)
         {
             this.context = context;
         }
 
-        public dynamic RpcCall(RemoteProcedureCallRequest request)
+        public dynamic RpcCall(RpcCallRequest request)
         {
             using (var client = new WebClient { Encoding = System.Text.Encoding.UTF8 })
             {
