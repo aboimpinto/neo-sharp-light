@@ -14,6 +14,10 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="*"/>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="*"/>
     <PackageReference Include="Newtonsoft.Json" Version="*"/>
+    <PackageReference Include="System.Reactive" Version="4.2.0-preview.625"/>
+    <PackageReference Include="System.Reactive.Core" Version="4.2.0-preview.625"/>
+    <PackageReference Include="System.Reactive.Interfaces" Version="4.2.0-preview.625"/>
+    <PackageReference Include="System.Reactive.Linq" Version="4.2.0-preview.625"/>
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

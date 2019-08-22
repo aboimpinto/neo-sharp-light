@@ -32,7 +32,18 @@ namespace NeoSharpLight.RPC.BlockchainExtraction
             var blockCountOnTarget = this._nodeManager.GetBlockCount();
             this._logger.LogTrace($"BlockCount on node {this._appContext.ExtractionConfiguration.RpcPeer}: {blockCountOnTarget}");
 
-            this._logger.LogTrace($"Last block processed: {this._storageAccess.GetParameter("lastBlock")}");
+            var lastBlockProcessed = int.Parse(this._storageAccess.GetParameter("lastBlock"));
+            this._logger.LogTrace($"Last block processed: {lastBlockProcessed}");
+
+            while (blockCountOnTarget > lastBlockProcessed)
+            {
+                this._logger.LogTrace($"Processing block: {lastBlockProcessed}");
+                var rawBlock = this._nodeManager.GetRawBlock(lastBlockProcessed);
+
+                var stringRawBlock = rawBlock.ToString();
+
+                lastBlockProcessed++;
+            }
             return Task.CompletedTask;
         }
     }
