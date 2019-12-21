@@ -6,8 +6,6 @@ namespace NeoBlockchainExtractor
 {
     class Program
     {
-        // private static IServiceProvider _serviceProvider;
-    
         static void Main(string[] args)
         {
             var logMinumumLevel = Serilog.Events.LogEventLevel.Verbose;
