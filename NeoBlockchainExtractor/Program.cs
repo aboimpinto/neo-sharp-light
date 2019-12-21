@@ -1,12 +1,38 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace NeoBlockchainExtractor
 {
     class Program
     {
+        // private static IServiceProvider _serviceProvider;
+    
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var logMinumumLevel = Serilog.Events.LogEventLevel.Verbose;
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("consoleapp.log", logMinumumLevel)
+                .WriteTo.Console(logMinumumLevel)
+                .CreateLogger();
+
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            var logger = serviceProvider.GetService<ILogger<Program>>();
+            logger.LogInformation(".... Starting NeoBlockchainExtractor ....");
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services
+                .AddLogging(x => 
+                {
+                    x.AddSerilog();
+                });
         }
     }
 }
