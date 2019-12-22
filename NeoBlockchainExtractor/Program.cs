@@ -11,7 +11,7 @@ namespace NeoBlockchainExtractor
             var logMinumumLevel = Serilog.Events.LogEventLevel.Verbose;
 
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File("consoleapp.log", logMinumumLevel)
+                .WriteTo.RollingFile("extrator.log", logMinumumLevel, retainedFileCountLimit:7)
                 .WriteTo.Console(logMinumumLevel)
                 .CreateLogger();
 
